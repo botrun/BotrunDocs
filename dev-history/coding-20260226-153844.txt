@@ -1,0 +1,15 @@
+# 開發記錄
+
+## 任務
+建立 site 目錄，內含 Hello Botrun 介紹頁
+
+## 完成項目
+- 建立 site/index.html：漸層背景的現代風格介紹頁面
+- 包含響應式設計、繁體中文內容
+
+## 經驗
+- 新專案首次 commit 使用 git push -u origin main 設定追蹤
+- 簡潔的 HTML 介紹頁使用 CSS gradient + flexbox 置中效果佳
+
+## 地雷
+- 無（任務單純）
