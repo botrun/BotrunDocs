@@ -1,0 +1,24 @@
+# === 敏感 / 內部資料（不上傳）===
+
+# Layer 1：原始採集（可能含內部程式碼結構、API 路徑、會議記錄、客戶對話）
+raw-sources/
+
+# Layer 2：洞見整理（引用內部資訊的分析文件）
+insights/
+
+# 專案內部文件（研究、簡報）
+docs/
+
+# === 開發環境 ===
+
+# Claude Code 本地設定（個人化，不共享）
+.claude/settings.local.json
+
+# Playwright 暫存截圖（PostToolUse hook 自動清理）
+*.png
+
+# Python / 系統
+.playwright-mcp/
+__pycache__/
+*.pyc
+.DS_Store

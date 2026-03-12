@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botrun 常見問答（FAQ）</title>
+  <meta name="description" content="關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、免費試用、定價方式、與 ChatGPT 差異、多代理模式、MCP 工具、知識圖譜、TAIDE 模型、.botrun 編譯、技術架構與資安。">
+  <meta name="keywords" content="Botrun FAQ, 波特人常見問題, 免費試用, ChatGPT比較, MCP, 多代理, 資安, TAIDE, 知識圖譜">
+  <link rel="canonical" href="https://docs.botrun.ai/faq/index.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Botrun 常見問答（FAQ）">
+  <meta property="og:description" content="關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、免費試用、定價方式、與 ChatGPT 差異、多代理模式、MCP 工具、知識圖譜、TAIDE 模型、.botrun 編譯、技術架構與資安。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/faq/index.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "name": "Botrun 常見問答（FAQ）",
+  "description": "關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、免費試用、定價方式、與 ChatGPT 差異、多代理模式、MCP 工具、知識圖譜、TAIDE 模型、.botrun 編譯、技術架構與資安。",
+  "url": "https://docs.botrun.ai/faq/index.html",
+  "inLanguage": "zh-TW",
+  "dateModified": "2026-03-11"
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* 導航列 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* 主內容 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* 標題 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* 段落與列表 */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* 連結 */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* 引用 */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* 程式碼 */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* 水平線 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* 強調 */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* 頁尾 */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">首頁</a>
+        <a href="../features/index.html">功能</a>
+        <a href="../getting-started/index.html">導入指南</a>
+        <a href="../bots/index.html">波特小隊</a>
+        <a href="../faq/index.html" class="active">FAQ</a>
+  </nav>
+
+  <main>
+<h1 id="botrun">Botrun 常見問答</h1>
+<hr />
+<h2 id="botrun_1">Botrun 波特人是什麼？</h2>
+<p>Botrun 波特人是由卡米爾股份有限公司（CAMEO INC.）開發的生成式 AI bot 代理平台，專門解決特定領域問題。</p>
+<p>核心特點：
+- <strong>自然語言互動</strong> — 透過對話提問，不需要學習特殊語法
+- <strong>多代理系統</strong> — Bot 可自主使用搜尋、文件分析、畫圖等工具完成複雜任務
+- <strong>專業角色</strong> — 內建波庫（SQL）、波文（文件）、波分（數據）等專業波特人
+- <strong>自訂 Bot</strong> — 透過 Hatcher 建立完全自訂的 Bot，含知識庫和工具配置
+- <strong>多模型支援</strong> — 可選擇多個提供商的 AI 模型</p>
+<h2 id="_1">可以免費體驗嗎？</h2>
+<p>可以。新客戶通過審核後享有 <strong>1 個月免費試用</strong>。
+- 註冊方式：前往 https://botrun.ai 提供電子郵件登錄
+- 卡米爾保留審核與開通的權利</p>
+<h2 id="_2">費用如何計算？</h2>
+<p>Botrun 提供<strong>客製化方案</strong>，依專案需求規劃：
+- 資料機敏性（影響部署方式）
+- 雲端或地端部署
+- 使用人數
+- 教育訓練需求</p>
+<p>目前無公開固定定價，需聯繫卡米爾團隊諮詢。</p>
+<h2 id="_3">什麼是多代理模式？</h2>
+<p>Botrun 的 Bot 有兩種運作模式：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>基礎（Basic）</td>
+<td>標準 LLM 對話，適合一般問答</td>
+</tr>
+<tr>
+<td>多代理（Multi-Agent）</td>
+<td>Bot 可使用上網、解析文件、畫圖等工具自主完成任務</td>
+</tr>
+</tbody>
+</table>
+<p>多代理模式會使用獨立的代理模型池，並自動啟用 MCP 工具。</p>
+<h2 id="mcp">什麼是 MCP 工具？</h2>
+<p>MCP（Model Context Protocol）是連接 AI 與外部服務的標準協議。在 Botrun 中：
+- 平台提供可用的工具列表
+- 使用者在建立 Bot 時勾選需要的工具
+- 多個工具可組合使用
+- 僅在多代理模式下啟用</p>
+<h2 id="hatcher">什麼是 Hatcher？</h2>
+<p>Hatcher 是 Botrun 的 Bot 建立器，使用者可建立完全自訂的 Bot：
+- 自訂名稱和提示詞模板
+- 選擇 AI 模型（基礎模型 + 代理模型）
+- 上傳知識庫檔案（PDF、DOCX、CSV）
+- 設定 MCP 工具
+- 分享給其他使用者</p>
+<p>路徑：登入後前往 <code>/hatcher</code>。</p>
+<h2 id="ai">支援哪些 AI 模型？</h2>
+<p>Botrun 支援多個提供商的 AI 模型，分為：
+- <strong>基礎模型（Basic Models）</strong>：標準對話使用
+- <strong>代理模型（Agent Models）</strong>：多代理模式專用</p>
+<p>模型列表由平台動態提供，使用者在建立 Bot 時選擇。</p>
+<h2 id="_4">語音功能支援哪些模型？</h2>
+<p>語音轉文字支援四種模型：</p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>特點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI 4o</td>
+<td>多模態</td>
+</tr>
+<tr>
+<td>OpenAI Whisper</td>
+<td>準確穩定</td>
+</tr>
+<tr>
+<td>Groq Whisper</td>
+<td>快速準確</td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td>語音直譯</td>
+</tr>
+</tbody>
+</table>
+<p>另有「閃電語音輸入」模式，適合大量語音輸入。</p>
+<h2 id="chatgpt">波特人與 ChatGPT 有什麼不同？</h2>
+<table>
+<thead>
+<tr>
+<th>面向</th>
+<th>ChatGPT</th>
+<th>Botrun 波特人</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>知識庫</td>
+<td>依賴訓練資料和網路搜尋</td>
+<td>可上傳自有檔案建立專屬知識庫（RAG）</td>
+</tr>
+<tr>
+<td>自訂性</td>
+<td>GPTs 有限自訂</td>
+<td>Hatcher 完整自訂（模型、提示詞、知識庫、MCP 工具）</td>
+</tr>
+<tr>
+<td>工具整合</td>
+<td>內建工具</td>
+<td>MCP 協議連接任意外部服務</td>
+</tr>
+<tr>
+<td>速度</td>
+<td>外部 API 呼叫約 15 秒</td>
+<td>比 GPTs 快 5 倍，約 3 秒</td>
+</tr>
+<tr>
+<td>資料安全</td>
+<td>上傳至 OpenAI 伺服器</td>
+<td>支援地端部署，資料不離開內部網路</td>
+</tr>
+<tr>
+<td>部署方式</td>
+<td>僅雲端</td>
+<td>雲端 + 地端（Docker 隔離）</td>
+</tr>
+<tr>
+<td>政府合規</td>
+<td>需額外評估</td>
+<td>符合行政院生成式 AI 參考指引</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_5">支援哪些檔案格式？</h2>
+<p>知識庫支援：<strong>PDF、DOCX、CSV</strong>。</p>
+<p>上傳後檔案會被轉為向量儲存，使用語意搜尋技術進行檢索。</p>
+<h2 id="_6">資料安全如何保障？</h2>
+<ul>
+<li><strong>封閉雲端專區</strong> — 獨立環境，與其他客戶隔離</li>
+<li><strong>地端部署</strong> — Docker-in-Docker 隔離架構，資料完全留在客戶機房</li>
+<li><strong>多因素驗證（MFA）</strong> — 支援 TOTP，可強制啟用</li>
+<li><strong>企業 SSO</strong> — 整合企業身份系統</li>
+<li><strong>Token 驗證</strong> — 所有 API 呼叫需驗證身份</li>
+<li><strong>政府合規</strong> — 符合「行政院及所屬機關（構）使用生成式 AI 參考指引」</li>
+</ul>
+<h2 id="_7">支援哪些語言？</h2>
+<p>平台介面支援：
+- 繁體中文（zh-Hant）— 預設
+- 英文（en）</p>
+<h2 id="botrun_2">Botrun 的知識圖譜怎麼運作？</h2>
+<p>Botrun 提供 <strong>botrun-graph</strong> 知識圖譜功能，是傳統 RAG 的進化版：
+- 建立文件之間的語意關係圖，不只是逐段比對
+- 相比微軟 GraphRAG，API 請求量僅 1/20，<strong>成本便宜 19 倍</strong>（USD 0.62 vs USD 11.62）
+- 適合大量文件的深層語意檢索，曾應用於百萬公文檢索</p>
+<h2 id="botrun-taide">Botrun 跟 TAIDE 有什麼關係？</h2>
+<p>Botrun 整合了台灣本土 <strong>TAIDE 大型語言模型</strong>，推出 taide-botrun 融合模型：
+- 融合後品質評分從 4.6 提升至 <strong>8.4</strong>（滿分 10）
+- TAIDE 是國科會支持的台灣本土模型
+- 提供在地化的繁體中文 AI 能力</p>
+<h2 id="botrun_3">.botrun 是什麼？可以脫離平台使用嗎？</h2>
+<p><code>.botrun</code> 是 Botrun 的提示工程格式。特點：
+- 可<strong>編譯為 <code>.py</code></strong>（Python 腳本）
+- 編譯後與 OpenAI API 和 litellm 相容
+- <strong>可脫離 Botrun 平台獨立運行</strong>，無平台鎖定
+- 提示詞可像程式碼一樣用 Git 管理</p>
+<h2 id="_8">如何聯絡？</h2>
+<ul>
+<li>服務平台：https://botrun.ai</li>
+<li>官方介紹：https://intro.botrun.ai</li>
+<li>聯繫方式：來信預約線上討論</li>
+<li>公司：卡米爾股份有限公司（CAMEO INC.）</li>
+</ul>
+  </main>
+  <footer>
+    <p>Botrun 波特人 — 卡米爾股份有限公司（CAMEO INC.）</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>最後更新：2026-03-11</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>孵化器（Hatcher）— 不寫程式，建立你的專屬 AI Bot</title>
+  <meta name="description" content="波特人孵化器完整指南：Bot 建立、提示工程、知識庫 RAG、MCP 工具整合、多代理模式。含真實案例（內政部波夫、波庫、調查局黃喉貂）。">
+  <meta name="keywords" content="孵化器, Hatcher, Bot建立, 提示工程, 知識庫, RAG, MCP, 多代理模式, 波特人">
+  <link rel="canonical" href="https://docs.botrun.ai/features/hatcher.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="孵化器（Hatcher）— 不寫程式，建立你的專屬 AI Bot">
+  <meta property="og:description" content="波特人孵化器完整指南：Bot 建立、提示工程、知識庫 RAG、MCP 工具整合、多代理模式。含真實案例（內政部波夫、波庫、調查局黃喉貂）。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/features/hatcher.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "孵化器（Hatcher）— 不寫程式，建立你的專屬 AI Bot",
+  "description": "波特人孵化器完整指南：Bot 建立、提示工程、知識庫 RAG、MCP 工具整合、多代理模式。含真實案例（內政部波夫、波庫、調查局黃喉貂）。",
+  "url": "https://docs.botrun.ai/features/hatcher.html",
+  "inLanguage": "zh-TW",
+  "dateModified": "2026-03-11"
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* 導航列 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* 主內容 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* 標題 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* 段落與列表 */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* 連結 */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* 引用 */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* 程式碼 */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* 水平線 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* 強調 */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* 頁尾 */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* 文件佈局：側邊欄 + 內容 */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar .sidebar-group {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1rem 1.25rem 0.3rem;
+      margin-top: 0.5rem;
+    }
+    .sidebar .sidebar-group:first-child {
+      margin-top: 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* 手機版側邊欄 */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">首頁</a>
+        <a href="../features/index.html">功能</a>
+        <a href="../getting-started/index.html">導入指南</a>
+        <a href="../bots/index.html">波特小隊</a>
+        <a href="../faq/index.html">FAQ</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">功能總覽</a>
+      <div class="sidebar-group">第一層：直接用</div>
+      <a href="native.html">原生波特人</a>
+      <div class="sidebar-group">第二層：自己建 Bot</div>
+      <a href="hatcher.html" class="active">孵化器（Hatcher）</a>
+      <div class="sidebar-group">第三層：專業 Bot</div>
+      <a href="bots-detail.html">波特小隊與記憶</a>
+      <div class="sidebar-group">平台</div>
+      <a href="platform.html">平台能力</a>
+    </aside>
+    <main>
+<h1 id="hatcher-bot">孵化器（Hatcher）— 自己建 Bot</h1>
+<blockquote>
+<p><strong>孵化器是把「通用 AI」變成「你的專屬數位員工」的地方。</strong></p>
+<p>原生波特人什麼都能做一點，但孵化器讓你針對特定業務情境，打造一個專精某件事的 AI Bot——它知道你的術語、遵守你的規則、只用你指定的工具。</p>
+</blockquote>
+<p>← <a href="index.html">返回功能總覽</a></p>
+<hr />
+<h2 id="_1">孵化器是什麼？</h2>
+<p>孵化器（Hatcher）是波特人的 Bot 建立器。它像一個「AI 實驗室」：你定義角色、知識、工具，孵化器幫你組裝出一個專屬的 AI 助理。</p>
+<p><strong>不需要寫程式。</strong> 整個過程就是填表單、上傳檔案、勾選工具。</p>
+<h3 id="vs-bot">原生波特人 vs 孵化出的 Bot</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>原生波特人</th>
+<th>孵化出的 Bot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>誰能用</strong></td>
+<td>所有人，進入就能用</td>
+<td>你建的，可分享給指定的人</td>
+</tr>
+<tr>
+<td><strong>知識範圍</strong></td>
+<td>通用知識 + 網路搜尋</td>
+<td>通用知識 + <strong>你上傳的專屬文件</strong></td>
+</tr>
+<tr>
+<td><strong>行為規則</strong></td>
+<td>平台預設</td>
+<td><strong>你定義的角色、語氣、限制</strong></td>
+</tr>
+<tr>
+<td><strong>工具能力</strong></td>
+<td>平台預設工具</td>
+<td><strong>你選擇的工具組合</strong></td>
+</tr>
+<tr>
+<td><strong>適合場景</strong></td>
+<td>臨時問答、快速分析</td>
+<td><strong>反覆使用的專業流程</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_2">你可以設定什麼</h2>
+<p>孵化器的設定分為五個區塊：</p>
+<h3 id="_3">一、基本設定</h3>
+<table>
+<thead>
+<tr>
+<th>設定</th>
+<th>說明</th>
+<th>UI 標籤</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bot 名稱</strong></td>
+<td>給你的 Bot 一個好記的名字</td>
+<td>「名稱」</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">二、提示工程（最核心的部分）</h3>
+<p>提示詞模板是 Bot 的「大腦指令」，定義它是誰、怎麼說話、能做什麼不能做什麼。</p>
+<p>你可以在提示詞中設定：</p>
+<table>
+<thead>
+<tr>
+<th>設定面向</th>
+<th>說明</th>
+<th>範例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>角色定義</strong></td>
+<td>Bot 的身份和專業</td>
+<td>「你是內政部的 SQL 專家，專門處理人口統計資料庫查詢」</td>
+</tr>
+<tr>
+<td><strong>互動規則</strong></td>
+<td>對話風格和氛圍</td>
+<td>「使用台灣繁體中文，語氣溫暖但專業」</td>
+</tr>
+<tr>
+<td><strong>限制條件</strong></td>
+<td>不能做的事</td>
+<td>「禁止使用簡體字」「不做法律解釋，只引導到主責機關」</td>
+</tr>
+<tr>
+<td><strong>任務目標</strong></td>
+<td>Bot 存在的目的</td>
+<td>「幫使用者把自然語言描述轉成可執行的 SQL 查詢」</td>
+</tr>
+<tr>
+<td><strong>輸出格式</strong></td>
+<td>回答的結構</td>
+<td>「每次回答都附上引用的法條編號」</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bot">三、Bot 機制</h3>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>說明</th>
+<th>適合場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>基礎模式</strong></td>
+<td>純對話，直接用提示詞回應</td>
+<td>單純問答、文字處理</td>
+</tr>
+<tr>
+<td><strong>多代理模式（Agent）</strong></td>
+<td>可呼叫工具，自主判斷何時用哪個工具</td>
+<td>需要上網、分析檔案、產出圖表的複合任務</td>
+</tr>
+</tbody>
+</table>
+<p>選擇多代理模式後，Bot 獲得「自主思考」能力——它會判斷你的問題需要哪些工具，自動組合執行。</p>
+<p><strong>模型選擇</strong>：基礎模式和多代理模式有各自獨立的模型池，你可以為不同需求選擇最適合的模型。</p>
+<h3 id="mcp">四、MCP 工具箱（僅多代理模式）</h3>
+<p>勾選你要給 Bot 的工具。常見工具包括：</p>
+<table>
+<thead>
+<tr>
+<th>工具</th>
+<th>功能</th>
+<th>使用場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>web_search</code></td>
+<td>即時聯網搜尋</td>
+<td>查最新資訊、新聞</td>
+</tr>
+<tr>
+<td><code>scrape</code></td>
+<td>網頁內容擷取</td>
+<td>讀取指定網頁</td>
+</tr>
+<tr>
+<td><code>chat_with_pdf</code></td>
+<td>深度 PDF 分析</td>
+<td>合約、論文、報告問答</td>
+</tr>
+<tr>
+<td><code>chat_with_imgs</code></td>
+<td>多圖辨識分析</td>
+<td>圖片內容辨識</td>
+</tr>
+<tr>
+<td><code>generate_image</code></td>
+<td>AI 圖片生成</td>
+<td>視覺素材產出</td>
+</tr>
+<tr>
+<td><code>create_plotly_chart</code></td>
+<td>互動式圖表</td>
+<td>數據視覺化</td>
+</tr>
+<tr>
+<td><code>create_mermaid_diagram</code></td>
+<td>流程與架構圖</td>
+<td>系統設計、專案管理</td>
+</tr>
+<tr>
+<td><code>create_html_page</code></td>
+<td>客製化網頁</td>
+<td>報告頁面、儀表板</td>
+</tr>
+</tbody>
+</table>
+<p>多個工具可以組合使用。例如：Bot 先上網搜尋資料，再整理成圖表，最後產出一個網頁報告。</p>
+<h3 id="_5">五、知識庫</h3>
+<p>上傳你的專屬文件，Bot 會根據這些資料回答問題。</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>新增檔案</strong></td>
+<td>上傳多個檔案（上限 200MB）</td>
+</tr>
+<tr>
+<td><strong>支援格式</strong></td>
+<td>PDF、Word、CSV、Excel 等</td>
+</tr>
+<tr>
+<td><strong>檔案管理</strong></td>
+<td>查看已上傳檔案、大小、刪除</td>
+</tr>
+<tr>
+<td><strong>語意搜尋</strong></td>
+<td>Bot 用向量搜尋找到最相關的內容</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5">建立步驟（5 分鐘完成）</h2>
+<pre><code>步驟 1：點選頂部導航列的「孵化器」分頁
+  ↓
+步驟 2：按「建立 BOT」
+  ↓
+步驟 3：填寫名稱（例如「內政部簽證審查」）
+  ↓
+步驟 4：撰寫提示工程（定義角色、規則、任務）
+  ↓
+步驟 5：選擇 BOT 機制
+  ├── 基礎：純對話
+  └── 多代理：可用工具 → 勾選 MCP 工具
+  ↓
+步驟 6：上傳知識庫檔案（可選）
+  ↓
+步驟 7：在右側測試區即時測試
+  ↓
+完成！系統每 3 秒自動儲存
+</code></pre>
+<p><strong>儲存狀態指示</strong>：畫面會顯示「尚未儲存」→「儲存中」→「於 XX:XX 儲存成功！」</p>
+<hr />
+<h2 id="bot_1">分享你的 Bot</h2>
+<p>每個 Bot 都有一個<strong>專屬網址</strong>（<code>botrun.ai/b/你的BotID</code>）。</p>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>說明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>複製專屬網址</strong></td>
+<td>一鍵複製，貼給同事就能用</td>
+</tr>
+<tr>
+<td><strong>指定分享</strong></td>
+<td>分享給特定使用者（需權限驗證）</td>
+</tr>
+<tr>
+<td><strong>取消分享</strong></td>
+<td>隨時收回權限</td>
+</tr>
+<tr>
+<td><strong>My Playbook</strong></td>
+<td>瀏覽他人分享的 Bot，複製來用</td>
+</tr>
+</tbody>
+</table>
+<p>對方收到連結後，會看到 Bot 的介紹頁面，點「新增並開啟對話」即可開始使用。</p>
+<hr />
+<h2 id="_6">真實案例：客戶用孵化器做了什麼</h2>
+<h3 id="30">案例一：內政部「波夫」— 簽證審查 30 秒完成</h3>
+<p><strong>情境：</strong> 宗禮司每年審查大量外籍人士來台研修案，每案人工審查需要 3 小時。</p>
+<p><strong>孵化器設定：</strong>
+- <strong>角色</strong>：簽證審查專員
+- <strong>知識庫</strong>：八類公文草稿範本、審核表格範本
+- <strong>工具</strong>：PDF 分析（辨識護照）、自動文件合併（「迴文針」功能）</p>
+<p><strong>Bot 能做的事：</strong>
+1. 上傳申請文件（最多 10 人團體）
+2. 自動辨識護照中的姓名、護照號碼、出生年月日
+3. 自動比對台灣參與比例（需達 50%）
+4. 產出完整公文（3 頁）+ 審核表格（1 頁）
+5. 自動生成「長官核稿清單」含頁碼對照</p>
+<p><strong>成效：</strong> 人工 3 小時 → AI <strong>30 秒至 1 分鐘</strong></p>
+<hr />
+<h3 id="sql">案例二：內政部「波庫」— SQL 專家</h3>
+<p><strong>情境：</strong> 統計處需要分析少子化根因、住宅與婚齡關聯性，但 SQL 開發耗時。</p>
+<p><strong>孵化器設定：</strong>
+- <strong>角色</strong>：SQL 專家
+- <strong>知識庫</strong>：資料庫 schema 文件
+- <strong>提示詞</strong>：定義資料庫結構、欄位命名規則</p>
+<p><strong>成效：</strong> SQL 開發從<strong>兩天→三小時</strong></p>
+<hr />
+<h3 id="_7">案例三：調查局「黃喉貂」— 宣導圖製作</h3>
+<p><strong>情境：</strong> 調查員需要製作宣導圖，但沒有設計人力。</p>
+<p><strong>孵化器設定：</strong>
+- <strong>角色</strong>：宣導圖設計師
+- <strong>工具</strong>：AI 圖片生成
+- <strong>提示詞</strong>：定義調查局品牌風格、吉祥物（黃喉貂）使用規範</p>
+<p><strong>成效：</strong> 調查員自己就能產出專業宣導圖</p>
+<hr />
+<h3 id="aiec">案例四：市集案「AIEC 會議紀錄」— 自動整理</h3>
+<p><strong>情境：</strong> 大量會議紀錄需要整理成統一格式。</p>
+<p><strong>孵化器設定：</strong>
+- <strong>角色</strong>：會議紀錄整理專員
+- <strong>工具</strong>：網頁製作（產出 HTML 報告）
+- <strong>提示詞</strong>：定義會議紀錄格式、重點摘要規則</p>
+<p><strong>成效：</strong> 產出可直接分享的 HTML 格式會議紀錄</p>
+<hr />
+<h2 id="_8">進階使用</h2>
+<h3 id="_9">搭配高品味題庫</h3>
+<p>孵化器 + <a href="../getting-started/index.html#第二站高品味題庫--導入成功的關鍵">高品味題庫</a> 是最佳組合：</p>
+<ol>
+<li>在孵化器中建立 Bot，定義角色和工具</li>
+<li>用高品味題庫提供範例（六欄位：動機、效益、提問、答案、原始資料、鑑別原則）</li>
+<li>Bot 自動從範例中學會怎麼回答</li>
+<li>不需要手工打磨提示詞，題庫做好了提示工程就完美了</li>
+</ol>
+<h3 id="rag">知識庫（RAG）</h3>
+<blockquote>
+<p><strong>上傳你的文件，AI 根據你的資料回答。</strong></p>
+</blockquote>
+<ul>
+<li><strong>上傳多種格式</strong>：PDF、Word、CSV、Excel</li>
+<li><strong>上傳多個檔案</strong>：建立完整的知識庫</li>
+<li><strong>中文問答</strong>：用自然語言問問題，AI 從你的文件中找答案</li>
+<li><strong>搜尋增強</strong>：可開啟搜尋功能，讓 Bot 同時參考網路資料和你的文件</li>
+<li><strong>網域過濾</strong>：限制搜尋結果只來自指定網站</li>
+<li><strong>引證來源</strong>：回答時標註出處，可驗證</li>
+</ul>
+<h3 id="botrun-graph">知識圖譜（botrun-graph）</h3>
+<p>RAG 的進化版，建立文件之間的語意關係圖：</p>
+<table>
+<thead>
+<tr>
+<th>項目</th>
+<th>GraphRAG</th>
+<th>botrun-graph</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API 請求量</td>
+<td>449 次</td>
+<td>約 22 次（1/20）</td>
+</tr>
+<tr>
+<td>成本</td>
+<td>USD 11.62</td>
+<td>USD 0.62</td>
+</tr>
+<tr>
+<td>成本比</td>
+<td>—</td>
+<td><strong>便宜 19 倍</strong></td>
+</tr>
+</tbody>
+</table>
+<p>適合企業級大量文件知識庫，以低成本實現深層語意檢索。曾應用於百萬公文檢索專案。</p>
+<h3 id="mcp_1">MCP 工具整合</h3>
+<blockquote>
+<p><strong>讓你的 Bot 不只會聊天，還會「動手做事」。</strong></p>
+</blockquote>
+<p>MCP（Model Context Protocol）讓 Bot 能呼叫外部工具。當你把 Bot 設為 Agent 模式，它可以：</p>
+<ul>
+<li><strong>上網搜尋</strong>：查即時資訊</li>
+<li><strong>存取 Google Drive</strong>：讀取和寫入你的雲端文件</li>
+<li><strong>呼叫自訂 API</strong>：串接你自己的系統</li>
+<li><strong>執行資料分析</strong>：處理 CSV、產出圖表</li>
+<li><strong>多工具組合</strong>：一個指令，Bot 自動組合多個工具完成任務</li>
+</ul>
+<p>設定方式：
+1. 在孵化器中將 Bot 設為「Agent 模式」
+2. 系統自動載入可用的 MCP 工具列表（<code>/v2/hatch/mcp-tools</code>）
+3. 勾選你需要的工具，多個工具配置自動合併為 JSON
+4. Bot 會在對話中自動判斷何時該用哪個工具</p>
+<h3 id="multi-agent">多代理模式（Multi-Agent）</h3>
+<p>Bot 有兩種運作模式：</p>
+<p><strong>基礎模式（Basic）</strong>：標準 LLM 對話，適合一般問答與文件分析。</p>
+<p><strong>Agent 模式（Multi-Agent）</strong>：啟用後，Bot 可自主使用多種工具來回答問題：
+- 上網搜尋即時資訊
+- 解析上傳的文件
+- 繪製圖表（Banana 圖表生成）
+- 執行程式碼
+- 呼叫 MCP 工具
+- 產出 PDF 報告</p>
+<h3 id="data-as-agents">資料即代理（Data as Agents）</h3>
+<p>波小隊的多代理架構將資料轉化為具備行動能力的代理：
+- <strong>記憶能力</strong> — 跨對話保留上下文
+- <strong>上網搜尋</strong> — 取得即時資訊
+- <strong>程式碼執行</strong> — 在隔離環境中執行運算
+- <strong>PDF 報告產出</strong> — 自動生成結構化報告</p>
+<h3 id="_10">自動化流程</h3>
+<p>設定 Bot 在接收到特定指令時，自動執行一系列動作：
+- 搜尋資料 → 整理成表格 → 儲存成檔案
+- 讀取 PDF → 擷取關鍵數據 → 產出圖表 → 生成報告網頁</p>
+<hr />
+<h2 id="_11">孵化器常見問題</h2>
+<table>
+<thead>
+<tr>
+<th>問題</th>
+<th>解答</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>不會寫提示詞怎麼辦？</td>
+<td>用<a href="../getting-started/index.html#第二站高品味題庫--導入成功的關鍵">高品味題庫</a>提供範例，AI 自動學會</td>
+</tr>
+<tr>
+<td>建立的 Bot 會被別人看到嗎？</td>
+<td>不會，除非你主動分享</td>
+</tr>
+<tr>
+<td>可以建幾個 Bot？</td>
+<td>沒有數量限制</td>
+</tr>
+<tr>
+<td>上傳的檔案有大小限制嗎？</td>
+<td>單檔上限 200MB</td>
+</tr>
+<tr>
+<td>編輯到一半會遺失嗎？</td>
+<td>不會，系統每 3 秒自動儲存</td>
+</tr>
+<tr>
+<td>模型可以換嗎？</td>
+<td>可以，基礎模式和多代理模式各有獨立模型池</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_12">下一步</h2>
+<ul>
+<li>← <a href="index.html">返回功能總覽</a></li>
+<li><strong>想了解原生功能？</strong> → 看<a href="native.html">原生波特人</a></li>
+<li><strong>想看專業 Bot？</strong> → 看<a href="bots-detail.html">波特小隊</a></li>
+<li><strong>想了解平台能力？</strong> → 看<a href="platform.html">平台能力</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="切換功能選單">☰</button>
+  <footer>
+    <p>Botrun 波特人 — 卡米爾股份有限公司（CAMEO INC.）</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>最後更新：2026-03-11</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

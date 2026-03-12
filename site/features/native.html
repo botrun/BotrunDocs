@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>原生波特人 — 不用設定，進入就能用的 AI 能力</title>
+  <meta name="description" content="波特人原生功能完整說明：即時搜尋、網頁擷取、PDF 深度分析、多圖辨識、AI 圖片生成、互動式圖表、流程圖、客製化網頁、語音輸入。進入 botrun.ai 即可使用。">
+  <meta name="keywords" content="波特人原生功能, AI搜尋, PDF分析, 圖片生成, 語音轉文字, Plotly圖表, Mermaid流程圖">
+  <link rel="canonical" href="https://docs.botrun.ai/features/native.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="原生波特人 — 不用設定，進入就能用的 AI 能力">
+  <meta property="og:description" content="波特人原生功能完整說明：即時搜尋、網頁擷取、PDF 深度分析、多圖辨識、AI 圖片生成、互動式圖表、流程圖、客製化網頁、語音輸入。進入 botrun.ai 即可使用。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/features/native.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "原生波特人 — 不用設定，進入就能用的 AI 能力",
+  "description": "波特人原生功能完整說明：即時搜尋、網頁擷取、PDF 深度分析、多圖辨識、AI 圖片生成、互動式圖表、流程圖、客製化網頁、語音輸入。進入 botrun.ai 即可使用。",
+  "url": "https://docs.botrun.ai/features/native.html",
+  "inLanguage": "zh-TW",
+  "dateModified": "2026-03-11"
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* 導航列 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* 主內容 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* 標題 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* 段落與列表 */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* 連結 */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* 引用 */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* 程式碼 */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* 水平線 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* 強調 */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* 頁尾 */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* 文件佈局：側邊欄 + 內容 */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar .sidebar-group {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1rem 1.25rem 0.3rem;
+      margin-top: 0.5rem;
+    }
+    .sidebar .sidebar-group:first-child {
+      margin-top: 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* 手機版側邊欄 */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">首頁</a>
+        <a href="../features/index.html">功能</a>
+        <a href="../getting-started/index.html">導入指南</a>
+        <a href="../bots/index.html">波特小隊</a>
+        <a href="../faq/index.html">FAQ</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">功能總覽</a>
+      <div class="sidebar-group">第一層：直接用</div>
+      <a href="native.html" class="active">原生波特人</a>
+      <div class="sidebar-group">第二層：自己建 Bot</div>
+      <a href="hatcher.html">孵化器（Hatcher）</a>
+      <div class="sidebar-group">第三層：專業 Bot</div>
+      <a href="bots-detail.html">波特小隊與記憶</a>
+      <div class="sidebar-group">平台</div>
+      <a href="platform.html">平台能力</a>
+    </aside>
+    <main>
+<h1 id="_1">原生波特人</h1>
+<blockquote>
+<p><strong>不用孵化、不用設定，進入 botrun.ai 就能直接使用的所有功能。</strong></p>
+</blockquote>
+<p>← <a href="index.html">返回功能總覽</a></p>
+<p>打開波特人，你馬上就有一個全能的 AI 助理。以下是它內建的能力：</p>
+<hr />
+<h2 id="_2">即時搜尋</h2>
+<blockquote>
+<p><strong>問最新消息，AI 幫你上網查，回答附來源引用。</strong></p>
+</blockquote>
+<h3 id="_3">你可以做什麼</h3>
+<ul>
+<li>問「台積電今天股價多少？」、「明天台北天氣如何？」</li>
+<li>AI 透過 Perplexity 進行深度搜尋</li>
+<li>回答附上<strong>來源引用（Citations）</strong>，確保資訊可追溯</li>
+<li>支援同時搜尋文字與圖片</li>
+</ul>
+<h3 id="_4">使用方式</h3>
+<p>直接在對話中問即時問題，波特人會自動判斷是否需要上網搜尋。</p>
+<hr />
+<h2 id="_5">網頁擷取</h2>
+<blockquote>
+<p><strong>貼一個網址，AI 直接讀取並分析頁面內容。</strong></p>
+</blockquote>
+<h3 id="_6">你可以做什麼</h3>
+<ul>
+<li>貼上任何網頁網址</li>
+<li>AI 自動抓取頁面文字內容</li>
+<li>可以請 AI 摘要、翻譯、分析該頁面</li>
+<li>適合快速了解一篇長文章、比較多個網頁內容</li>
+</ul>
+<h3 id="_7">使用方式</h3>
+<p>在對話中貼上網址，再告訴波特人你想怎麼處理。例如：「幫我摘要這篇文章」。</p>
+<hr />
+<h2 id="pdf">PDF 深度分析</h2>
+<blockquote>
+<p><strong>上傳 PDF，AI 幫你讀完並回答問題。</strong></p>
+</blockquote>
+<h3 id="_8">你可以做什麼</h3>
+<ul>
+<li>上傳大型 PDF 檔案（系統自動壓縮與分段處理）</li>
+<li>針對合約、論文、報告進行問答</li>
+<li>總結重點、擷取特定數據</li>
+<li>比較多份文件的差異</li>
+</ul>
+<h3 id="_9">使用方式</h3>
+<p>拖拉或點擊上傳 PDF（上限 200MB），然後用自然語言提問。</p>
+<hr />
+<h2 id="_10">多圖辨識</h2>
+<blockquote>
+<p><strong>上傳多張圖片，AI 一次辨識和分析。</strong></p>
+</blockquote>
+<h3 id="_11">你可以做什麼</h3>
+<ul>
+<li>同時上傳多張圖片</li>
+<li>辨識圖中的物件、文字、人物</li>
+<li>解讀圖表數據（長條圖、圓餅圖等）</li>
+<li>根據圖片內容進行創意發想或比較分析</li>
+</ul>
+<h3 id="_12">使用方式</h3>
+<p>上傳圖片，告訴波特人你想了解什麼。</p>
+<hr />
+<h2 id="ai">AI 圖片生成</h2>
+<blockquote>
+<p><strong>用文字描述，AI 生成高品質圖片。</strong></p>
+</blockquote>
+<h3 id="_13">你可以做什麼</h3>
+<ul>
+<li>描述你想要的圖片（越詳細越好）</li>
+<li>AI 使用 DALL-E 3 技術生成</li>
+<li>支援擬真照片和各種藝術風格</li>
+<li>產出的圖片有永久連結，不會過期</li>
+</ul>
+<h3 id="_14">使用方式</h3>
+<p>在對話中描述你想要的畫面。例如：「畫一張夕陽下的台北 101，水彩風格」。</p>
+<hr />
+<h2 id="_15">互動式圖表</h2>
+<blockquote>
+<p><strong>給波特人數據，它幫你做出可互動的圖表。</strong></p>
+</blockquote>
+<h3 id="_16">你可以做什麼</h3>
+<ul>
+<li><strong>折線圖</strong>：趨勢分析、時間序列</li>
+<li><strong>圓餅圖</strong>：比例分布</li>
+<li><strong>散佈圖</strong>：相關性分析</li>
+<li><strong>熱點圖</strong>：密度分布</li>
+<li><strong>3D 圖表</strong>：立體數據呈現</li>
+<li><strong>地理地圖</strong>：地理位置資料視覺化</li>
+</ul>
+<h3 id="_17">特色</h3>
+<p>產出的是互動式 HTML（使用 Plotly），你可以在瀏覽器中縮放、點選數據點、懸停查看數值。</p>
+<h3 id="_18">使用方式</h3>
+<p>直接貼上數據或上傳 CSV，告訴波特人你想看什麼圖。</p>
+<hr />
+<h2 id="_19">流程與架構圖</h2>
+<blockquote>
+<p><strong>AI 幫你畫專業的流程圖、架構圖、甘特圖。</strong></p>
+</blockquote>
+<h3 id="_20">支援的圖表類型</h3>
+<table>
+<thead>
+<tr>
+<th>圖表類型</th>
+<th>適合場景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>流程圖（Flowchart）</td>
+<td>系統架構、決策流程</td>
+</tr>
+<tr>
+<td>循序圖（Sequence Diagram）</td>
+<td>API 互動、系統溝通</td>
+</tr>
+<tr>
+<td>甘特圖（Gantt Chart）</td>
+<td>專案進度排程</td>
+</tr>
+<tr>
+<td>ER 圖（ER Diagram）</td>
+<td>資料庫關聯設計</td>
+</tr>
+<tr>
+<td>心智圖（Mind Map）</td>
+<td>腦力激盪、概念整理</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_21">使用方式</h3>
+<p>描述你的流程或架構，波特人用 Mermaid 語法自動產出圖表。</p>
+<hr />
+<h2 id="_22">客製化網頁</h2>
+<blockquote>
+<p><strong>AI 直接寫出完整網頁，附永久連結。</strong></p>
+</blockquote>
+<h3 id="_23">你可以做什麼</h3>
+<ul>
+<li>AI 撰寫完整的 HTML 頁面</li>
+<li>自動整合 Tailwind CSS（美化）、Alpine.js（互動）、Chart.js（圖表）</li>
+<li>產出的網頁有永久連結，不會過期</li>
+<li>適合快速做出簡報頁面、資料儀表板、活動頁面</li>
+</ul>
+<h3 id="_24">使用方式</h3>
+<p>描述你想要的網頁，波特人會直接產出。例如：「幫我做一個專案進度看板網頁」。</p>
+<hr />
+<h2 id="_25">精確時間</h2>
+<p>波特人隨時知道現在的台北標準時間（UTC+8），處理「今天」「下週」「去年」等相對時間不會搞混。</p>
+<hr />
+<h2 id="_26">對話介面功能</h2>
+<p>除了上述內建能力，對話介面本身還提供：</p>
+<ul>
+<li><strong>語音輸入</strong>：按住錄音鍵，說完自動轉成文字（支援 4 種模型）</li>
+<li><strong>閃電語音模式</strong>：錄完直接發送，不用預覽</li>
+<li><strong>即時串流回應</strong>：SSE 串流，回答逐字顯示</li>
+<li><strong>檔案上傳</strong>：拖拉或點擊上傳（上限 200MB）</li>
+<li><strong>查看工具執行過程</strong>：展開看 AI 用了什麼工具、花了多久</li>
+<li><strong>複製和分享</strong>：複製 AI 回答、分享整段對話（唯讀連結）</li>
+<li><strong>簡報模式</strong>：隱藏側邊欄（<code>?mode=presentation</code>）</li>
+<li><strong>對話管理</strong>：重新命名、刪除、查看歷史</li>
+<li><strong>背景串流</strong>：切換對話時原回應不中斷</li>
+<li><strong>回饋評分</strong>：真實性、完整性、易用性、及時性、即時性（1-5 分）</li>
+<li><strong>深淺色主題</strong>：深色或淺色介面</li>
+</ul>
+<h3 id="_27">語音轉文字模型</h3>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>特色</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenAI 4o 多模態</td>
+<td>支援多種語言</td>
+</tr>
+<tr>
+<td>OpenAI Whisper</td>
+<td>準確穩定</td>
+</tr>
+<tr>
+<td>Groq Whisper</td>
+<td>快速準確</td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td>語音直譯</td>
+</tr>
+</tbody>
+</table>
+<p>兩種使用方式：<strong>一般模式</strong>（先預覽再發送）和<strong>閃電模式</strong>（錄完自動發送）。</p>
+<h3 id="_28">效能</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>Botrun</th>
+<th>GPTs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>外部 API 呼叫速度</td>
+<td>約 3 秒</td>
+<td>約 15 秒</td>
+</tr>
+<tr>
+<td>圖片辨識影響</td>
+<td>無速度影響</td>
+<td>輸出速度降至 1/3</td>
+</tr>
+<tr>
+<td>回應方式</td>
+<td>SSE 逐字串流</td>
+<td>等待完整生成</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_29">下一步</h2>
+<ul>
+<li>← <a href="index.html">返回功能總覽</a></li>
+<li><strong>想自己建 Bot？</strong> → 看<a href="hatcher.html">孵化器功能</a></li>
+<li><strong>想看專業 Bot？</strong> → 看<a href="bots-detail.html">波特小隊</a></li>
+<li><strong>想了解平台能力？</strong> → 看<a href="platform.html">平台能力</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="切換功能選單">☰</button>
+  <footer>
+    <p>Botrun 波特人 — 卡米爾股份有限公司（CAMEO INC.）</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>最後更新：2026-03-11</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

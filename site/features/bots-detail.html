@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>波特小隊與永恆知己 — 預建的專業 AI Bot 與記憶功能</title>
+  <meta name="description" content="波特小隊完整介紹：波露露（會議記錄）、波駿馬（公文生成）、波火眼（OCR 遮蔽）、波林 007（輿情報告）、波金法（法規查詢），以及永恆知己記憶功能。">
+  <meta name="keywords" content="波特小隊, 波露露, 波駿馬, 波火眼, 波林007, 波金法, 永恆知己, 會議記錄, 公文生成, OCR">
+  <link rel="canonical" href="https://docs.botrun.ai/features/bots-detail.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="波特小隊與永恆知己 — 預建的專業 AI Bot 與記憶功能">
+  <meta property="og:description" content="波特小隊完整介紹：波露露（會議記錄）、波駿馬（公文生成）、波火眼（OCR 遮蔽）、波林 007（輿情報告）、波金法（法規查詢），以及永恆知己記憶功能。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/features/bots-detail.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "波特小隊與永恆知己 — 預建的專業 AI Bot 與記憶功能",
+  "description": "波特小隊完整介紹：波露露（會議記錄）、波駿馬（公文生成）、波火眼（OCR 遮蔽）、波林 007（輿情報告）、波金法（法規查詢），以及永恆知己記憶功能。",
+  "url": "https://docs.botrun.ai/features/bots-detail.html",
+  "inLanguage": "zh-TW",
+  "dateModified": "2026-03-11"
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* 導航列 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* 主內容 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* 標題 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* 段落與列表 */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* 連結 */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* 引用 */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* 程式碼 */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* 水平線 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* 強調 */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* 頁尾 */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* 文件佈局：側邊欄 + 內容 */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar .sidebar-group {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 1rem 1.25rem 0.3rem;
+      margin-top: 0.5rem;
+    }
+    .sidebar .sidebar-group:first-child {
+      margin-top: 0;
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* 手機版側邊欄 */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">首頁</a>
+        <a href="../features/index.html">功能</a>
+        <a href="../getting-started/index.html">導入指南</a>
+        <a href="../bots/index.html">波特小隊</a>
+        <a href="../faq/index.html">FAQ</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">功能總覽</a>
+      <div class="sidebar-group">第一層：直接用</div>
+      <a href="native.html">原生波特人</a>
+      <div class="sidebar-group">第二層：自己建 Bot</div>
+      <a href="hatcher.html">孵化器（Hatcher）</a>
+      <div class="sidebar-group">第三層：專業 Bot</div>
+      <a href="bots-detail.html" class="active">波特小隊與記憶</a>
+      <div class="sidebar-group">平台</div>
+      <a href="platform.html">平台能力</a>
+    </aside>
+    <main>
+<h1 id="_1">波特小隊與永恆知己</h1>
+<blockquote>
+<p><strong>針對特定業務場景預建的 AI Bot，不用自己設定提示詞和工具。</strong></p>
+</blockquote>
+<p>← <a href="index.html">返回功能總覽</a></p>
+<hr />
+<h2 id="_2">波露露（會議記錄）</h2>
+<blockquote>
+<p><strong>開會不用抄筆記，AI 幫你做會議記錄。</strong></p>
+</blockquote>
+<p>波露露（Botlulu）是波特人的會議記錄工具，目前版本 v6.3.12。</p>
+<h3 id="_3">你可以做什麼</h3>
+<ul>
+<li><strong>即時錄音轉文字</strong>：每分鐘自動產出一段逐字稿</li>
+<li><strong>自動標記關鍵詞</strong>：主席裁示、委員發言等自動標記</li>
+<li><strong>電腦關閉仍繼續</strong>：即使關閉電腦，波露露仍持續記錄</li>
+<li><strong>產出會議紀錄</strong>：從逐字稿自動整理成結構化會議紀錄</li>
+</ul>
+<h3 id="_4">目前狀態</h3>
+<table>
+<thead>
+<tr>
+<th>指標</th>
+<th>數值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>啟動速度</td>
+<td>約 10 秒（從 50+ 秒最佳化）</td>
+</tr>
+<tr>
+<td>錄音延遲</td>
+<td>目標 1 秒內</td>
+</tr>
+<tr>
+<td>語者分離</td>
+<td>約 70%（需完整錄音檔案提升準確度）</td>
+</tr>
+<tr>
+<td>幻覺問題</td>
+<td>持續改善中（長時間靜默 5 分鐘以上仍有）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_5">成本</h3>
+<p>會議紀錄：200 元/份</p>
+<h3 id="_6">真實案例</h3>
+<p><strong>中油（200 Named User）：</strong>
+- 用波露露記錄日常會議
+- 透過 Google Drive 串接回流到美波平台
+- 減少人工整理會議紀錄的時間</p>
+<hr />
+<h2 id="_7">波駿馬（公文生成）</h2>
+<blockquote>
+<p><strong>AI 幫你寫公文，還能融合你過去的寫作風格。</strong></p>
+</blockquote>
+<p>波駿馬是基於 Opus 4.6 的公文生成工具。</p>
+<h3 id="_8">你可以做什麼</h3>
+<ul>
+<li><strong>上傳舊公文</strong>：上傳過去的 100-200 份 PDF 公文</li>
+<li><strong>AI 自動學習</strong>：從你的公文中學習用語、格式、風格</li>
+<li><strong>生成新公文</strong>：告訴 AI 需求（核定補助、人事異動等），自動產出</li>
+<li><strong>融合舊公文</strong>：AI 找到相關的舊公文，融合你的習慣寫法</li>
+<li><strong>校對修改</strong>：拖拉操作、即時校對</li>
+<li><strong>下載 Word</strong>：產出的公文可直接下載為 Word 格式</li>
+</ul>
+<h3 id="_9">搭配高品味題庫</h3>
+<p>波駿馬的品質取決於你建立的<a href="../getting-started/index.html#第二站高品味題庫--導入成功的關鍵">高品味題庫</a>。六欄位結構（動機、效益、提問、答案、原始資料、鑑別原則）讓 AI 自動學會怎麼寫好公文。</p>
+<h3 id="_10">成本比較</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>AI 公文</th>
+<th>真人撰寫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每份成本</td>
+<td>350 元</td>
+<td>約 1,500 元</td>
+</tr>
+<tr>
+<td>節省</td>
+<td><strong>77%</strong></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_11">真實案例</h3>
+<p><strong>國科會公文排行榜：</strong>
+- TAIDE 原始模型基準線：約 50 分
+- 波特人代理模型 + 高品味題庫：<strong>95 分</strong>
+- 5 維度評測：公文撰寫、OCR 精確度、法規引用、回應速度、繁中語感</p>
+<hr />
+<h2 id="ocr">波火眼（OCR 與遮蔽）</h2>
+<blockquote>
+<p><strong>自動辨識文件中的機敏資料，一鍵遮蔽。</strong></p>
+</blockquote>
+<h3 id="_12">你可以做什麼</h3>
+<ul>
+<li><strong>辨識機敏資訊</strong>：自動找出文件中的姓名、身分證字號、護照號碼、地址</li>
+<li><strong>智慧遮蔽</strong>：一鍵將機敏資料模糊或遮蔽</li>
+<li><strong>支援多種文件</strong>：PDF、掃描影像</li>
+</ul>
+<h3 id="_13">真實案例</h3>
+<p><strong>內政部宗禮司：</strong>
+- 審查宗教團體申請案，包含外籍人士護照影本
+- 波火眼自動辨識姓名、護照號碼、出生年月日
+- 大幅節省人工 key-in 與核對時間
+- 使用者滿意度：7-10 分</p>
+<hr />
+<h2 id="007">波林 007（輿情報告）</h2>
+<blockquote>
+<p><strong>排程產出輿情監控報告，SVG 視覺化呈現。</strong></p>
+</blockquote>
+<h3 id="_14">你可以做什麼</h3>
+<ul>
+<li><strong>設定排程</strong>：每天/每週自動產出報告</li>
+<li><strong>視覺化呈現</strong>：SVG 格式圖表，清晰易讀</li>
+<li><strong>零幻覺驗證</strong>：每份報告都經過事實驗證</li>
+</ul>
+<h3 id="_15">定價</h3>
+<table>
+<thead>
+<tr>
+<th>方案</th>
+<th>費用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>單份報告</td>
+<td>35 萬</td>
+</tr>
+<tr>
+<td>組織共享大腦年費</td>
+<td>400 萬</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_16">波金法（法規查詢）</h2>
+<blockquote>
+<p><strong>用白話文問法律問題，AI 引導你找到答案。</strong></p>
+</blockquote>
+<h3 id="_17">你可以做什麼</h3>
+<ul>
+<li><strong>白話文查法規</strong>：問「紅燈右轉會怎樣？」就能找到相關法條</li>
+<li><strong>白話文解釋</strong>：AI 用日常用語解釋法規內容（不做法律解釋）</li>
+<li><strong>引導至主責機關</strong>：告訴你該找哪個單位處理</li>
+<li><strong>最新法規同步</strong>：每天更新最新修法資訊</li>
+</ul>
+<h3 id="_18">真實案例</h3>
+<p><strong>法務部全國法規資料庫：</strong>
+- 一年 1.2 億次查詢量
+- AI 智慧入口讓民眾更容易找到需要的法規
+- 定價：問一次四台幣，四十八萬封頂</p>
+<hr />
+<h2 id="_19">永恆知己（記憶）</h2>
+<blockquote>
+<p><strong>AI 記得你，越用越懂你。</strong></p>
+</blockquote>
+<p>傳統 AI 每次對話都從零開始。波特人的永恆知己不同——它會記住你的偏好和歷史。</p>
+<h3 id="_20">運作方式</h3>
+<table>
+<thead>
+<tr>
+<th>記憶類型</th>
+<th>參考範圍</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>對話紀錄</td>
+<td>最近 1 週</td>
+<td>延續最近的討論脈絡</td>
+</tr>
+<tr>
+<td>使用者專屬公文</td>
+<td>最近 8 週</td>
+<td>參考你的寫作風格和常用格式</td>
+</tr>
+<tr>
+<td>智慧標籤</td>
+<td>AI 自動分類</td>
+<td>你可以指定「只看核定經費相關」</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_21">特色</h3>
+<ul>
+<li><strong>個人化</strong>：每個使用者有自己的記憶空間（波西瓜技術）</li>
+<li><strong>可篩選</strong>：用標籤指定 AI 參考的範圍</li>
+<li><strong>持久保存</strong>：永久記下去，累積越多越精準</li>
+<li><strong>隱私隔離</strong>：你的記憶不會被其他人看到</li>
+<li><strong>個人 + 共用雙層架構</strong>：個人資料夾和組織共用資料夾</li>
+</ul>
+<hr />
+<h2 id="_22">下一步</h2>
+<ul>
+<li>← <a href="index.html">返回功能總覽</a></li>
+<li><strong>想了解原生功能？</strong> → 看<a href="native.html">原生波特人</a></li>
+<li><strong>想自己建 Bot？</strong> → 看<a href="hatcher.html">孵化器功能</a></li>
+<li><strong>想了解平台能力？</strong> → 看<a href="platform.html">平台能力</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="切換功能選單">☰</button>
+  <footer>
+    <p>Botrun 波特人 — 卡米爾股份有限公司（CAMEO INC.）</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>最後更新：2026-03-11</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
