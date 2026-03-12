@@ -140,8 +140,14 @@ gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-d
 | 區域 | `asia-east1`（台灣） |
 | 公開網址 | https://storage.googleapis.com/botrun-docs-site/index.html |
 | llms.txt | https://storage.googleapis.com/botrun-docs-site/llms.txt |
-| GCP 帳號 | `hsiehchenwei@gmail.com` |
 | 快取時間 | 1 小時（部署後最多 1 小時生效） |
+
+**部署權限：** 任何擁有 GCP 專案 `scoop-386004` 存取權限的公司員工帳號都可以部署。首次使用請先登入：
+
+```bash
+gcloud auth login
+gcloud config set project scoop-386004
+```
 
 > 未來如需自訂域名（如 `docs.botrun.ai`），可隨時設定 Cloud Load Balancer 或改用 Firebase Hosting，不影響內容。
 

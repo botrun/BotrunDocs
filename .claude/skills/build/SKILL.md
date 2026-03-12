@@ -78,6 +78,8 @@ python3 -m http.server 8766 -d site
 gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-destination-objects --project=scoop-386004
 ```
 
+**部署權限：** 任何擁有 GCP 專案 `scoop-386004` 存取權限的公司員工帳號都可以部署。如果遇到權限問題，先執行 `gcloud auth login` 並確認 `gcloud config set project scoop-386004`。
+
 部署後的公開網址：
 - 首頁：`https://storage.googleapis.com/botrun-docs-site/index.html`
 - llms.txt：`https://storage.googleapis.com/botrun-docs-site/llms.txt`
