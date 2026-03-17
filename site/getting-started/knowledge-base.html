@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>高品味題庫 — 導入成功的關鍵方法論</title>
+  <meta name="description" content="什麼是高品味題庫？六欄位結構、建立步驟、與傳統 Prompt Engineering 的差異。含國科會公文、法務部法規智慧入口真實案例。">
+  <meta name="keywords" content="高品味題庫, Prompt Engineering, RAG, 知識庫, 國科會, 法務部, AI導入">
+  <link rel="canonical" href="https://docs.botrun.ai/getting-started/knowledge-base.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="高品味題庫 — 導入成功的關鍵方法論">
+  <meta property="og:description" content="什麼是高品味題庫？六欄位結構、建立步驟、與傳統 Prompt Engineering 的差異。含國科會公文、法務部法規智慧入口真實案例。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/getting-started/knowledge-base.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "高品味題庫 — 導入成功的關鍵方法論",
+  "description": "什麼是高品味題庫？六欄位結構、建立步驟、與傳統 Prompt Engineering 的差異。含國科會公文、法務部法規智慧入口真實案例。",
+  "url": "https://docs.botrun.ai/getting-started/knowledge-base.html",
+  "inLanguage": "zh-TW",
+  "dateModified": "2026-03-17"
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* 導航列 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* 主內容 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* 標題 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* 段落與列表 */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* 連結 */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* 引用 */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* 程式碼 */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* 水平線 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* 強調 */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* 頁尾 */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* 文件佈局：側邊欄 + 內容 */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* 手機版側邊欄 */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">首頁</a>
+        <a href="../features/index.html">功能</a>
+        <a href="../getting-started/index.html">導入指南</a>
+        <a href="../faq/index.html">FAQ</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">導入總覽</a>
+      <a href="knowledge-base.html" class="active">高品味題庫</a>
+      <a href="hackathon.html">黑客松實作</a>
+      <a href="training.html">教育訓練與優化</a>
+    </aside>
+    <main>
+<h1 id="_1">高品味題庫 — 導入成功的關鍵</h1>
+<blockquote>
+<p><strong>AI 要怎麼學會我們單位的專業知識？怎麼確保 AI 回答的品質？</strong></p>
+</blockquote>
+<p>這是整趟導入之旅<strong>最重要的一站</strong>。</p>
+<p>← <a href="index.html">返回導入總覽</a></p>
+<hr />
+<h2 id="_2">什麼是高品味題庫？</h2>
+<p>高品味題庫不是傳統的「問答集」，而是一套<strong>結構化的知識教材</strong>，讓 AI 能真正理解你的業務情境。</p>
+<p>傳統做法是花大量時間寫提示工程（Prompt Engineering），告訴 AI 該怎麼回答。高品味題庫的做法不同——<strong>你把好的範例準備好，AI 會自動學會怎麼回答。</strong></p>
+<blockquote>
+<p>「你做完高品味題庫，提示工程就會完美了。Opus 4.6 會全自動看你的高品味題庫，幫你把提示工程寫出來，而且是泛化的、不會過度擬合的。」
+— 泊寰（波特人技術長）</p>
+</blockquote>
+<hr />
+<h2 id="_3">六欄位結構</h2>
+<p>每一筆題庫資料包含六個欄位：</p>
+<table>
+<thead>
+<tr>
+<th>欄位</th>
+<th>內容</th>
+<th>範例（國科會公文）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. 動機</strong></td>
+<td>為什麼要做這份工作？</td>
+<td>「國科會核定某教授的研究計畫補助」</td>
+</tr>
+<tr>
+<td><strong>2. 效益評估</strong></td>
+<td>完成後達成什麼效益？</td>
+<td>「公文產出時間從 2 小時縮短至 10 分鐘」</td>
+</tr>
+<tr>
+<td><strong>3. 提問（Q）</strong></td>
+<td>使用者的實際提問，包含所有需要的參數</td>
+<td>「請撰寫核定補助公文，受補助教授：王大明，金額：200 萬，計畫名稱：量子計算研究，機構：台大，期程：115 年 1 月至 12 月」</td>
+</tr>
+<tr>
+<td><strong>4. 答案（A）</strong></td>
+<td>期望的完整產出</td>
+<td>完整的核定補助公文範本</td>
+</tr>
+<tr>
+<td><strong>5. 原始資料</strong></td>
+<td>參考文件</td>
+<td>過去的核定公文 PDF、相關法規</td>
+</tr>
+<tr>
+<td><strong>6. 鑑別原則</strong></td>
+<td>審查標準</td>
+<td>「格式正確、金額無誤、法規引用正確、用語符合公文體例」</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>六個欄位不需要每個都填滿，但核心精神是：讓 AI 知道「為什麼做」「怎麼做」「做得好的標準是什麼」。</p>
+</blockquote>
+<hr />
+<h2 id="vs-prompt-engineering">高品味題庫 vs 傳統 Prompt Engineering</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>傳統 Prompt Engineering</th>
+<th>高品味題庫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>你要做的事</strong></td>
+<td>手工打磨提示詞，反覆測試調整</td>
+<td>準備好的範例和評審標準</td>
+</tr>
+<tr>
+<td><strong>專業門檻</strong></td>
+<td>需要了解 AI 的運作方式</td>
+<td>只需要了解自己的業務</td>
+</tr>
+<tr>
+<td><strong>擴展性</strong></td>
+<td>每個新任務都要重寫提示詞</td>
+<td>新增題庫，AI 自動學會</td>
+</tr>
+<tr>
+<td><strong>品質穩定度</strong></td>
+<td>容易過度擬合特定案例</td>
+<td>泛化能力強，新案例也能處理</td>
+</tr>
+<tr>
+<td><strong>誰來維護</strong></td>
+<td>需要 AI 工程師</td>
+<td>業務人員就能更新題庫</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">怎麼建立你的第一份高品味題庫？</h2>
+<p><strong>步驟一：選定一個情境</strong></p>
+<p>從你單位最常做、最耗時的工作開始。例如：
+- 公文撰寫（核定補助、人事異動、採購案）
+- 會議記錄整理
+- 文件審查（申請案、環評案）
+- 數據分析報告</p>
+<p><strong>步驟二：收集 5-10 個真實範例</strong></p>
+<p>找出過去做得好的成品。這些就是你的「答案（A）」欄位。</p>
+<blockquote>
+<p><strong>關鍵教訓：提問欄位必須包含完整參數。</strong> 國科會公文實測中發現，如果提問只寫「幫我寫核定補助公文」，AI 會亂填教授名稱和金額。正確做法是把所有該填的值都寫進提問。「即使是模擬的，你都必須模擬出跟真的感覺很像的真的樣子。」</p>
+</blockquote>
+<p><strong>步驟三：定義鑑別原則</strong></p>
+<p>找你單位的專家（科長、資深承辦人）來定義：什麼算「做得好」？檢查哪些項目？</p>
+<p><strong>步驟四：用 AI 協助擴展</strong></p>
+<p>有了 5-10 個真實範例後，可以用 AI 協助產生更多變化題目，再由專家審核。</p>
+<p><strong>步驟五：多輪迭代驗證</strong></p>
+<p>讓真實使用者試用，記錄每一輪的問答過程。最新的題庫格式支援：
+- <strong>多 Sheet</strong>：每個 Sheet 是一個完整任務
+- <strong>時間戳</strong>：記錄每輪迭代的時間
+- <strong>多輪對話</strong>：完整保留迭代過程，而非只保留最終結果</p>
+<hr />
+<h2 id="_5">真實案例：國科會公文高品味題庫</h2>
+<p><strong>背景：</strong> 國網中心過去兩年跟 7 個政府機關合作推 TAIDE 模型做公文，投入將近一億經費，全部失敗。國網中心轉向波特人，採用 Agentic AI + 高品味題庫的方式。</p>
+<p>做法：</p>
+<ol>
+<li>收集 100 份國科會真實公文（核定、退休案、採購案、函、公告、開會通知）</li>
+<li>建立 5 個高品味題庫，採用多 Sheet、多輪對話、時間戳的新格式</li>
+<li>每份題庫由業務人員填寫六欄位，AI 工程師協助結構化</li>
+<li>建立自動評測系統，5 個維度打分：公文撰寫、OCR 精確度、法規引用、回應速度、繁中語感</li>
+</ol>
+<p>成果：</p>
+<ul>
+<li>TAIDE 原始模型基準線：約 50 分</li>
+<li>波特人代理模型 + 高品味題庫：95 分</li>
+<li>公文生成成本：350 元/份（vs 真人約 1,500 元，節省 77%）</li>
+</ul>
+<hr />
+<h2 id="_6">真實案例：法務部全國法規智慧入口</h2>
+<p><strong>背景：</strong> 全國法規資料庫一年有 1.2 億次查詢。法務部希望 AI 能用白話文幫民眾解釋法規、引導到對的機關。</p>
+<p>高品味題庫的應用：</p>
+<ul>
+<li>情境：民眾問「紅燈右轉會怎樣？」</li>
+<li>AI 不只找到道路交通管理處罰條例，還要用白話文解釋、告知罰則、提醒相關注意事項</li>
+<li>鑑別原則：禁止做法律解釋（只能引導）、必須引用正確法條、必須告知最新修法資訊</li>
+</ul>
+<p><strong>定價模式：</strong> 「問一次四台幣，四十八萬封頂」— 簡單到機關承辦人一聽就懂。</p>
+<hr />
+<h2 id="_7">下一步</h2>
+<ul>
+<li>← <a href="index.html">返回導入總覽</a></li>
+<li><strong>準備好了？</strong> → 看<a href="hackathon.html">黑客松實作驗證</a></li>
+<li><strong>想了解上線流程？</strong> → 看<a href="training.html">教育訓練與優化</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="切換功能選單">☰</button>
+  <footer>
+    <p>Botrun 波特人 — 卡米爾股份有限公司（CAMEO INC.）</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>最後更新：2026-03-17</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

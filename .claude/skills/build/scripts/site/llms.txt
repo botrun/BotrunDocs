@@ -1,0 +1,15 @@
+# Botrun 波特人
+
+> Botrun 波特人是台灣卡米爾公司開發的企業 AI 平台。
+> 上傳 PDF 建立知識庫問答、不寫程式建立自訂 Bot、支援地端部署。
+> 政府部會（內政部、數位部、法務部）與企業已導入使用。
+
+## 頁面索引
+
+
+## 聯絡
+
+- 服務平台：https://botrun.ai
+- 公司官網：https://intro.botrun.ai
+- Email：service@cameo.tw
+- 電話：02-2912-5028

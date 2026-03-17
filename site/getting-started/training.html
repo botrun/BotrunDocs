@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>教育訓練與持續優化 — 讓團隊每個人都會用，從一個部門擴展到整個組織</title>
+  <meta name="description" content="波特人教育訓練三種方式（無人教室、現場訓練、三堂必修課）、上線檢查清單、持續優化與組織擴展策略。">
+  <meta name="keywords" content="教育訓練, 無人教室, AI上線, 持續優化, 人本大使, 組織擴展">
+  <link rel="canonical" href="https://docs.botrun.ai/getting-started/training.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="教育訓練與持續優化 — 讓團隊每個人都會用，從一個部門擴展到整個組織">
+  <meta property="og:description" content="波特人教育訓練三種方式（無人教室、現場訓練、三堂必修課）、上線檢查清單、持續優化與組織擴展策略。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/getting-started/training.html">
+  <meta property="og:locale" content="zh_TW">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "教育訓練與持續優化 — 讓團隊每個人都會用，從一個部門擴展到整個組織",
+  "description": "波特人教育訓練三種方式（無人教室、現場訓練、三堂必修課）、上線檢查清單、持續優化與組織擴展策略。",
+  "url": "https://docs.botrun.ai/getting-started/training.html",
+  "inLanguage": "zh-TW",
+  "dateModified": "2026-03-17"
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* 導航列 */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* 主內容 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* 標題 */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* 段落與列表 */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* 連結 */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* 表格 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* 引用 */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* 程式碼 */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* 水平線 */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* 強調 */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* 頁尾 */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* 文件佈局：側邊欄 + 內容 */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* 手機版側邊欄 */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">首頁</a>
+        <a href="../features/index.html">功能</a>
+        <a href="../getting-started/index.html">導入指南</a>
+        <a href="../faq/index.html">FAQ</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">導入總覽</a>
+      <a href="knowledge-base.html">高品味題庫</a>
+      <a href="hackathon.html">黑客松實作</a>
+      <a href="training.html" class="active">教育訓練與優化</a>
+    </aside>
+    <main>
+<h1 id="_1">教育訓練與持續優化</h1>
+<blockquote>
+<p><strong>我們單位的人年齡層偏高，學得會嗎？上線之後怎麼持續使用？</strong></p>
+</blockquote>
+<p>← <a href="index.html">返回導入總覽</a></p>
+<hr />
+<h2 id="_2">三種學習方式</h2>
+<h3 id="_3">方式一：無人教室（自學課程）</h3>
+<p>完全不需要有人帶領的自學課程。</p>
+<p>設計特色：</p>
+<ul>
+<li>一頁到底，往下滑就對了，不會迷路</li>
+<li>打開頁面自動引導下一步</li>
+<li>教練式鼓勵：左側欄即時回饋進度</li>
+<li>灰色→彩色的證書進度條，讓你捨不得半途而廢</li>
+</ul>
+<p>影片教學頻道：</p>
+<ul>
+<li><a href="https://www.youtube.com/@botrunai/videos">波特人 AI 應用平臺操作教學</a></li>
+<li><a href="https://www.youtube.com/@TryAI%E7%84%A1%E4%BA%BA%E6%95%99%E5%AE%A4%E6%93%8D%E4%BD%9C%E6%95%99%E5%AD%B8">政府 AI 應用平臺操作教學</a></li>
+</ul>
+<h3 id="_4">方式二：現場教育訓練（講師帶領）</h3>
+<p>適合整個部門一起導入。</p>
+<p>實際案例 — 內政部教育訓練規劃：</p>
+<ul>
+<li>時間：3 月底至 4 月初，共 4 個半天</li>
+<li>人數：26 人</li>
+<li>內容：AI Play 平台操作 + 數據分析實作（使用真實 CSV 資料）</li>
+<li>特色：不是聽講座，而是每個人打開電腦跟著做</li>
+</ul>
+<h3 id="_5">方式三：內部三堂必修課</h3>
+<p>針對已經開始使用的團隊，確保每個人都達到基本能力。</p>
+<ol>
+<li><strong>心法課</strong>：AI 能做什麼、不能做什麼？怎麼跟 AI 協作？</li>
+<li><strong>實作課</strong>：四題實戰演練（每個人都要通過）</li>
+<li><strong>進階課</strong>：怎麼建立和維護高品味題庫</li>
+</ol>
+<p>考核機制：員工上傳螢幕錄影，AI 自動打分。確保不只是「上過課」，而是「真的會用」。</p>
+<hr />
+<h2 id="_6">持續優化</h2>
+<h3 id="_7">避免使用量下滑</h3>
+<blockquote>
+<p><strong>中油的教訓：</strong> 800 萬案子、200 個使用者，上線三個月後使用量明顯下滑。原因是導入後沒有持續追蹤使用狀況。</p>
+</blockquote>
+<p>波特人的「人本大使」機制：</p>
+<ul>
+<li>每個導入客戶配一位「人本大使」</li>
+<li>大使關注的不是成本控管，而是：「使用者愛用嗎？遇到什麼困難？」</li>
+<li>定期追蹤使用數據，主動發現問題</li>
+</ul>
+<h3 id="_8">持續優化題庫</h3>
+<p>高品味題庫不是做完就不動了。隨著業務變化，你需要：</p>
+<ul>
+<li>定期新增新的業務情境</li>
+<li>根據使用者回饋修正答案品質</li>
+<li>更新鑑別原則（法規修改、流程調整）</li>
+</ul>
+<hr />
+<h2 id="_9">從一個部門擴展到整個組織</h2>
+<p>成功的組織擴展通常遵循這個路徑：</p>
+<ol>
+<li><strong>單一部門先試跑</strong> — 選一個痛點明確的部門做 POC，快速驗證成效</li>
+<li><strong>量化成果</strong> — 用具體數字呈現節省的時間與成本，讓成效說話</li>
+<li><strong>培養種子教練</strong> — 讓成功部門的人帶動其他部門，降低導入門檻</li>
+<li><strong>向上爭取資源</strong> — 在主管會議展示成果，推動跨部門預算編列</li>
+</ol>
+<hr />
+<h2 id="_10">下一步</h2>
+<ul>
+<li>← <a href="index.html">返回導入總覽</a></li>
+<li><strong>還沒做題庫？</strong> → 看<a href="knowledge-base.html">高品味題庫</a></li>
+<li><strong>想辦黑客松？</strong> → 看<a href="hackathon.html">黑客松實作</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="切換功能選單">☰</button>
+  <footer>
+    <p>Botrun 波特人 — 卡米爾股份有限公司（CAMEO INC.）</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>最後更新：2026-03-17</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
