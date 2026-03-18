@@ -3,15 +3,14 @@
 BDD/TDD 測試：驗證「波夫」錯字已全部改為「波孵」。
 
 Feature: 修正錯字
-  Scenario: content/ 和 site/ 不應出現「波夫」
+  Scenario: site/ 不應出現「波夫」
   Scenario: 應改為「波孵」
 """
 
 import unittest
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
-CONTENT_DIR = BASE_DIR / "content"
+BASE_DIR = Path(__file__).parent.parent
 SITE_DIR = BASE_DIR / "site"
 
 # DRY: 排除 updates/ 歷史紀錄
@@ -39,24 +38,18 @@ def scan_for_text(directory, extensions, text, exclude_dirs=None):
 
 class TestTypoBofu(unittest.TestCase):
 
-    def test_no_bofu_in_content(self):
-        """Then content/ 不應出現「波夫」"""
-        hits = scan_for_text(CONTENT_DIR, [".md"], "波夫")
-        self.assertEqual(hits, {}, f"content/ 仍有「波夫」:\n" +
-            "\n".join(f"  {f}:{ln} {t}" for f, lines in hits.items() for ln, t in lines))
-
     def test_no_bofu_in_site(self):
         """Then site/ 不應出現「波夫」"""
         hits = scan_for_text(SITE_DIR, [".html", ".txt", ".xml"], "波夫")
         self.assertEqual(hits, {}, f"site/ 仍有「波夫」:\n" +
             "\n".join(f"  {f}:{ln} {t}" for f, lines in hits.items() for ln, t in lines))
 
-    def test_bofu_replaced_in_content(self):
-        """Then content/ 應出現「波孵」"""
+    def test_bofu_replaced_in_site(self):
+        """Then site/ 應出現「波孵」"""
         all_text = ""
-        for f in CONTENT_DIR.rglob("*.md"):
+        for f in SITE_DIR.rglob("*.html"):
             all_text += f.read_text(encoding="utf-8")
-        self.assertIn("波孵", all_text, "content/ 缺少「波孵」")
+        self.assertIn("波孵", all_text, "site/ 缺少「波孵」")
 
 
 if __name__ == "__main__":

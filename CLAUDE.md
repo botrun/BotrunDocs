@@ -9,7 +9,7 @@
 - **執行計劃：** `docs/執行計劃.md`
 
 ### 設計類
-- **每次更新流程：** `docs/設計-每次更新流程.md` — 四層管線 + 更新步驟 + 紀錄機制
+- **每次更新流程：** `docs/設計-每次更新流程.md` — 三層管線 + 更新步驟 + 紀錄機制
 
 ### 現況類
 - **現況分析：** `docs/現況-Botrun線上資源與AI可見性分析.md`
@@ -24,35 +24,40 @@
 - **關鍵資料：** `docs/project_notes/key_facts.md`
 - **前台原始碼：** `/Users/chenwei/Documents/GitHub/botrun_front`
 
-## 核心架構：四層內容管線
+### 知識來源
+- **CTO 技術洞見部落格：** https://botrun.github.io — 「五言波特人」，含戰略規劃、產品架構、研究分析等文章（採集紀錄：`raw-sources/2026-03-18/cto-blog-botrun-github-io.md`）
+- **CTO Medium：** https://medium.com/@bohachu — 技術文章（採集紀錄：`raw-sources/2026-03-11/medium-articles.md`）
+
+## 核心架構：三層內容管線
 
 ```
 Layer 1：raw-sources/     原始擷取（純資料傾倒，不做判斷）
     ↓
 Layer 2：insights/        洞見整理（跨來源比對 + 變更建議）
     ↓
-Layer 3：content/         Final MD（唯一編輯點，網站真實內容）
-    ↓
-Layer 4：site/            HTML 產出（自動生成，不手動編輯）
+Layer 3：site/            HTML 網站（唯一編輯點，直接改 HTML）
 ```
 
 - 詳見：`docs/設計-每次更新流程.md`
-- 更新循環：對照提問列表 → 採集 → 洞見 → 更新 Final MD → 生成 HTML → git commit → 驗證
-- **最高原則：** `content/_user-questions.md`（使用者提問列表，人機共編，指導所有內容方向）
+- 更新循環：對照提問列表 → 採集 → 洞見 → 更新 HTML → git commit → 驗證
+- **最高原則：** `_user-questions.md`（使用者提問列表，人機共編，指導所有內容方向）
+- **已移除 content/ 目錄**：不再有 Markdown → HTML 生成流程，site/ 就是唯一真相
 
 ## 目錄結構
 ```
 BotrunDocs/
-├── raw-sources/       ← Layer 1：原始擷取（按日期）
-├── insights/          ← Layer 2：洞見整理（按日期）
-├── content/           ← Layer 3：Final MD（唯一編輯點）
-│   ├── _user-questions.md ← 使用者提問列表（最高原則）
-│   ├── _registry.md   ← 內容登錄表
-│   └── *.md           ← 各頁面 MD
-├── site/              ← Layer 4：HTML 產出（由 content/ 生成）
-├── updates/           ← 每次更新的紀錄總結（永久保留）
-├── docs/              ← 專案文件（計劃、設計、研究）
+├── _user-questions.md ← 使用者提問列表（最高原則）
+├── site/              ← 唯一編輯點（直接改 HTML）
+│   ├── *.html             各頁面 HTML
+│   ├── llms.txt           AI Agent 索引（由 /build 產生）
+│   ├── llms-full.txt      完整內容純文字（由 /build 產生）
+│   ├── sitemap.xml        搜尋引擎索引（由 /build 產生）
+│   └── robots.txt         爬蟲規則（由 /build 產生）
+├── docs/              ← 專案文件（計劃、設計、研究，在 .gitignore 中）
 │   └── project_notes/
+├── updates/           ← 每次更新的紀錄總結（永久保留）
+├── raw-sources/       ← Layer 1：原始擷取（本地暫存，不進 git）
+├── insights/          ← Layer 2：洞見整理（本地暫存，不進 git）
 └── dev-history/
 ```
 
@@ -61,12 +66,14 @@ BotrunDocs/
 - llms.txt + Schema.org JSON-LD（AI Agent 最佳化）
 - 繁體中文（台灣用語）
 - GitHub Pages → docs.botrun.ai
-- 資料更新是核心：有新來源即觸發，四層管線確保品質
+- 資料更新是核心：有新來源即觸發，三層管線確保品質
 - 內容方向：使用者提問列表驅動，場景導向（非功能導向）
 - 三個 TA：部會使用者、Bot 建立者（Creator）、API 串接工程師
+- **直接編輯 HTML**：不再使用 Markdown 中間層，site/ 是唯一真相
 
 ## 注意事項
-- 永遠不直接編輯 site/*.html，從 content/*.md 生成
+- **直接編輯 site/*.html**（HTML 就是唯一真相）
+- 改完 HTML 後執行 `/build` 重新產生 llms.txt、sitemap.xml 等 AI 檔案
 - raw-sources/ 只放純原始資料，不做判斷
 - insights/ 記錄跨來源比對和變更決策
 - 參考 botrun_front 原始碼確保功能描述與實際一致

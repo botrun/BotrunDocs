@@ -14,7 +14,7 @@
 |---|---------|-----------|
 | **給誰看** | 人類用瀏覽器看 | AI Agent 讀取後回答使用者 |
 | **技術** | JavaScript SPA、圖片塞文字 | 純靜態 HTML、AI 100% 可讀 |
-| **更新速度** | PM → 設計 → 工程，1–2 週 | Markdown → 自動生成 HTML，數小時 |
+| **更新速度** | PM → 設計 → 工程，1–2 週 | 直接改 HTML，數小時 |
 | **內容方向** | 功能列表（工程師視角） | 使用者提問驅動（場景導向） |
 
 ---
@@ -24,26 +24,23 @@
 ```
 BotrunDocs/
 │
-├── content/                ← 唯一的內容編輯點（Markdown）
-│   ├── _user-questions.md      使用者提問列表（最高指導原則）
-│   ├── _registry.md            頁面登錄表
-│   ├── _update-tracker.md      更新追蹤
-│   ├── index.md                首頁
-│   ├── features/               功能（總覽 + 4 個子頁面）
-│   ├── getting-started/        導入指南
-│   └── faq/                    常見問答
+├── _user-questions.md      ← 使用者提問列表（最高指導原則）
 │
-├── site/                   ← 自動生成的 HTML（不要手動編輯）
-│   ├── *.html                  由 content/ 生成
-│   ├── llms.txt                AI Agent 索引
-│   ├── sitemap.xml             搜尋引擎索引
-│   └── robots.txt
+├── site/                   ← 唯一的內容編輯點（直接改 HTML）
+│   ├── index.html              首頁
+│   ├── features/               功能（總覽 + 3 個子頁面）
+│   ├── getting-started/        導入指南
+│   ├── faq/                    常見問答
+│   ├── llms.txt                AI Agent 索引（自動產生）
+│   ├── llms-full.txt           完整內容純文字（自動產生）
+│   ├── sitemap.xml             搜尋引擎索引（自動產生）
+│   └── robots.txt              爬蟲規則（自動產生）
 │
 ├── updates/                ← 每次更新的永久紀錄
 │   └── 2026-03-11.md
 │
 ├── CLAUDE.md               ← AI 助手的專案指引
-├── .claude/skills/         ← Claude Code 工作流程 + 建置腳本
+├── .claude/skills/         ← Claude Code 工作流程
 └── .gitignore
 ```
 
@@ -53,7 +50,6 @@ BotrunDocs/
 |------|------|-------------|
 | `raw-sources/` | 採集的原始資料 | 可能含內部程式碼結構、API 路徑 |
 | `insights/` | 跨來源分析和變更建議 | 引用內部敏感資訊 |
-| `docs/` | 研究文件、內部簡報 | 內部使用 |
 
 這些目錄在你本地執行流程時會自動建立，不需要手動建。
 
@@ -75,14 +71,14 @@ BotrunDocs/
 /update-cycle
 ```
 
-AI 會引導你走完 7 個步驟：
+AI 會引導你走完更新步驟：
 
 ```
 ⓪ 對照提問列表 → 確認本次要覆蓋哪些問題
 ① 採集原始資料 → 自動抓取 git log、官網、Medium 等
 ② 產出洞見     → 跨來源比對 + 變更建議（你可以審查）
-③ 更新內容     → 根據你確認的建議修改 Markdown
-④ 生成 HTML    → 執行 /build skill
+③ 更新 HTML    → 根據你確認的建議直接修改 site/*.html
+④ 產生 AI 檔案 → 執行 /build 更新 llms.txt 等
 ⑤ Git commit   → 結構化訊息（你確認後才 commit）
 ⑥ 寫更新紀錄   → updates/{日期}.md
 ⑦ 驗證         → 用提問測試 AI 回答品質
@@ -96,29 +92,28 @@ AI 會引導你走完 7 個步驟：
 |-----------|------|------|
 | 只收集資料 | `/collect` | 把來源存到 raw-sources/ |
 | 只分析差異 | `/insight` | 看完資料後產出變更建議 |
-| 只改內容 | `/update-content` | 根據已有建議修改 Markdown |
-| 只重建網站 | `/build` | 改完 MD 後重新生成 HTML |
+| 只改內容 | `/update-content` | 根據已有建議修改 HTML |
+| 只更新 AI 檔案 | `/build` | 從 HTML 重新產生 llms.txt 等 |
 
 ### 方法三：手動編輯
 
 如果你只是修正錯字或小調整：
 
-1. 直接編輯 `content/` 裡的 `.md` 檔案
-2. 執行 `/build` 重新生成 HTML
+1. 直接編輯 `site/` 裡的 `.html` 檔案
+2. 執行 `/build` 重新產生 AI 檔案
 3. commit 並 push
 
 ---
 
 ## 預覽與部署
 
-### 本地預覽（開發中使用）
+### 本地預覽
 
-在 Claude Code 輸入 `/build`，會自動：
-1. 生成 HTML
-2. 啟動本地伺服器（http://localhost:8766）
-3. 讓你預覽確認後再決定是否部署
+```bash
+python3 -m http.server 8766 -d site
+```
 
-本地預覽不會公開，外部搜尋引擎看不到。確認內容沒問題後再部署。
+開啟 http://localhost:8766 確認內容。
 
 ### 部署上線
 
@@ -127,8 +122,6 @@ AI 會引導你走完 7 個步驟：
 ```bash
 gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-destination-objects --project=scoop-386004
 ```
-
-透過 `/build` skill 操作時，建置完成後會詢問是否要部署，不會自動推上去。
 
 ### 部署資訊
 
@@ -150,7 +143,7 @@ gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-d
 
 ### 使用者提問列表是最高原則
 
-`content/_user-questions.md` 定義了「使用者會問什麼」。所有內容更新都以這份列表為方向。
+`_user-questions.md` 定義了「使用者會問什麼」。所有內容更新都以這份列表為方向。
 
 **PM 夥伴的主要貢獻就是維護這份列表：**
 - 客戶問了什麼問題？加上 `[客戶]` 標記
@@ -177,17 +170,15 @@ gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-d
 
 ## 常見問題
 
-### Q：我改了 content/ 的 Markdown，網站會自動更新嗎？
+### Q：我改了 HTML，AI 索引會自動更新嗎？
 
-不會。流程是：
-1. 在 Claude Code 輸入 `/build` 進行本地預覽
-2. 確認後部署到 GCS（`/build` 會詢問你）
-3. commit 並 push 到 GitHub
+不會。改完 HTML 後要執行 `/build` 重新產生 llms.txt、sitemap.xml 等 AI 檔案。
 
 ### Q：我想新增一個頁面怎麼辦？
 
-1. 在 `content/` 建立新的 `.md` 檔案（參考其他頁面的 front-matter 格式）
-2. 執行 `/build`，Claude Code 會自動處理新頁面的註冊和建置
+1. 在 `site/` 建立新的 `.html` 檔案（複製現有頁面作為模板）
+2. 更新 `.claude/skills/build/scripts/build.py` 中的 `PAGES` 定義
+3. 執行 `/build` 產生更新的 AI 檔案
 
 ### Q：raw-sources/ 和 insights/ 不見了？
 
@@ -195,4 +186,4 @@ gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-d
 
 ### Q：我不會用 Claude Code，能直接在 GitHub 上改嗎？
 
-可以。直接在 GitHub 網頁編輯 `content/` 裡的 Markdown 檔案，但改完後需要有人在 Claude Code 執行 `/build` 重新生成 HTML。
+可以。直接在 GitHub 網頁編輯 `site/` 裡的 HTML 檔案，但改完後需要有人執行 `/build` 重新產生 AI 檔案。

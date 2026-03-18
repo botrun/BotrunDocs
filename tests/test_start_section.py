@@ -10,10 +10,9 @@ Feature: 修改開始使用段落
 import unittest
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 
 # DRY: 需要檢查的檔案
-INDEX_MD = BASE_DIR / "content" / "index.md"
 INDEX_HTML = BASE_DIR / "site" / "index.html"
 
 # DRY: 應移除的文字
@@ -33,23 +32,12 @@ class TestStartSection(unittest.TestCase):
     """Scenario: 開始使用段落修改正確"""
 
     def setUp(self):
-        self.md = INDEX_MD.read_text(encoding="utf-8")
         self.html = INDEX_HTML.read_text(encoding="utf-8")
-
-    def test_free_trial_removed_from_md(self):
-        """Then content/index.md 不應包含免費試用相關文字"""
-        for text in REMOVED_TEXTS:
-            self.assertNotIn(text, self.md, f"index.md 仍有：{text}")
 
     def test_free_trial_removed_from_html(self):
         """Then site/index.html 不應包含免費試用相關文字"""
         for text in REMOVED_TEXTS:
             self.assertNotIn(text, self.html, f"index.html 仍有：{text}")
-
-    def test_contact_email_in_md(self):
-        """Then content/index.md 聯絡資訊應包含 service@cameo.tw"""
-        for text in REQUIRED_TEXTS:
-            self.assertIn(text, self.md, f"index.md 缺少：{text}")
 
     def test_contact_email_in_html(self):
         """Then site/index.html 聯絡資訊應包含 service@cameo.tw"""

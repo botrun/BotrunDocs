@@ -5,7 +5,7 @@ BDD/TDD 測試：驗證波特人小隊相關內容已完全從網站移除。
 Feature: 移除波特人小隊
   Scenario: 所有頁面不應包含波特人小隊相關內容
     Given 網站已建置完成
-    When 檢查所有 content/*.md 和 site/*.html
+    When 檢查所有 site/*.html
     Then 不應出現任何波特人小隊相關字詞
     And 導覽列不應包含波特小隊連結
     And bots 目錄不應存在
@@ -18,7 +18,7 @@ import glob
 import unittest
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 
 # DRY: 統一定義所有需要排除的關鍵字（單一來源）
 # 注意：「波程」「波分」「波文」已被新 Bot 名稱（波程、波分段、波文件問答）重新使用，
@@ -44,7 +44,6 @@ OLD_BOT_EXACT_PATTERNS = [
 
 # DRY: 需要檢查的目錄（排除 updates/ 歷史紀錄）
 SCAN_DIRS = {
-    "content": BASE_DIR / "content",
     "site": BASE_DIR / "site",
 }
 
@@ -90,21 +89,6 @@ def scan_directory(directory: Path, extensions: list, keywords: list, patterns: 
 class TestBotSquadRemoved(unittest.TestCase):
     """BDD Scenario: 所有頁面不應包含波特人小隊相關內容"""
 
-    def test_content_md_no_bot_squad_keywords(self):
-        """Given content/*.md, Then 不應出現任何波特人小隊相關字詞"""
-        violations = scan_directory(
-            SCAN_DIRS["content"], [".md"], BOT_SQUAD_KEYWORDS, OLD_BOT_EXACT_PATTERNS
-        )
-        self.assertEqual(
-            violations, {},
-            f"\n\ncontent/ 中仍有波特人小隊關鍵字:\n"
-            + "\n".join(
-                f"  {f}:{ln} [{kw}] {text}"
-                for f, hits in violations.items()
-                for ln, kw, text in hits
-            ),
-        )
-
     def test_site_html_no_bot_squad_keywords(self):
         """Given site/*.html, Then 不應出現任何波特人小隊相關字詞"""
         violations = scan_directory(
@@ -128,20 +112,6 @@ class TestBotSquadRemoved(unittest.TestCase):
             hits, [],
             f"\n\nbuild.py 中仍有 bots 定義:\n"
             + "\n".join(f"  L{ln} [{kw}] {text}" for ln, kw, text in hits),
-        )
-
-    def test_bots_directory_not_exist(self):
-        """Then content/bots/ 目錄不應存在"""
-        self.assertFalse(
-            (BASE_DIR / "content" / "bots").exists(),
-            "content/bots/ 目錄仍然存在",
-        )
-
-    def test_bots_detail_not_exist(self):
-        """Then content/features/bots-detail.md 不應存在"""
-        self.assertFalse(
-            (BASE_DIR / "content" / "features" / "bots-detail.md").exists(),
-            "content/features/bots-detail.md 仍然存在",
         )
 
     def test_site_bots_html_not_exist(self):

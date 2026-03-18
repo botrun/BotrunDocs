@@ -24,7 +24,83 @@
   "description": "Botrun 波特人進階常見問答：支援檔案格式、AI 模型選擇、TAIDE、.botrun 格式、資料安全、對話介面功能、提示詞技巧。",
   "url": "https://docs.botrun.ai/faq/advanced.html",
   "inLanguage": "zh-TW",
-  "dateModified": "2026-03-17"
+  "dateModified": "2026-03-17",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "支援哪些檔案格式？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "知識庫支援：PDF、DOCX、CSV、Excel。上傳後檔案會被轉為向量儲存，使用語意搜尋技術進行檢索。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "支援哪些 AI 模型？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "波特人同時支援開放模型與商用模型：\n使用者在建立 Bot 時可依需求選擇。開放模型適合一般用途；商用模型提供更高品質的回應。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Botrun 跟 TAIDE 有什麼關係？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Botrun 整合了台灣本土 TAIDE 大型語言模型，推出 taide-botrun 融合模型：\n- 融合後品質評分從 4.6 提升至 8.4（滿分 10）\n- TAIDE 是國科會支持的台灣本土模型\n- 提供在地化的繁體中文 AI 能力"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "資料安全如何保障？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "- 封閉雲端專區 — 獨立環境，與其他客戶隔離\n- 地端部署 — Docker-in-Docker 隔離架構，資料完全留在客戶機房\n- 多因素驗證（MFA） — 支援 TOTP，可強制啟用\n- 企業 SSO — 整合企業身份系統\n- 政府合規 — 符合「行政院及所屬機關（構）使用生成式 AI 參考指引」"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "對話介面有哪些功能？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "除了 AI 能力，波特人的對話介面還提供：\n- 語音輸入：按住錄音鍵，說完自動轉成文字\n- 閃電語音模式：錄完直接發送，不用預覽\n- 即時串流回應：SSE 串流，回答逐字顯示\n- 檔案上傳：拖拉或點擊上傳（上限 200MB）\n- 查看工具執行過程：展開看 AI 用了什麼工具、花了多久\n- 複製和分享：複製 AI 回答、分享整段對話（唯讀連結）\n- 對話管理：重新命名、刪除、查看歷史\n- 深淺色主題：深色或淺色介面"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何讓 AI 回答更精準？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "波特人推薦使用 COSTAR 提示詞架構：\n 指令越清楚 → 產出品質越好 → 人工修改越少 → 工作效率越高"
+      }
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://docs.botrun.ai"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "FAQ",
+      "item": "https://docs.botrun.ai/faq/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "功能與技術",
+      "item": "https://docs.botrun.ai/faq/advanced.html"
+    }
+  ]
 }
   </script>
 

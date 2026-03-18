@@ -10,7 +10,7 @@ Feature: 側邊欄精簡
 import unittest
 from pathlib import Path
 
-BASE_DIR = Path(__file__).parent
+BASE_DIR = Path(__file__).parent.parent
 SITE_DIR = BASE_DIR / "site"
 
 FEATURE_HTML = SITE_DIR / "features" / "index.html"
