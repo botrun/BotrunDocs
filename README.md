@@ -2,9 +2,9 @@
 
 讓 AI Agent（Claude、ChatGPT、Gemini）能正確回答使用者關於 Botrun 的問題。
 
-> 狀態：開發中（本地預覽）
-> 上線後網址：https://storage.googleapis.com/botrun-docs-site/index.html
-> PM 操作指南：https://storage.googleapis.com/botrun-docs-site/internal/pm-guide.html
+> 狀態：已上線
+> 網址：https://botrun-docs.web.app（自訂域名 docs.botrun.ai 待設定）
+> 託管：Firebase Hosting（GCP 專案 `scoop-386004`）
 
 ---
 
@@ -60,8 +60,10 @@ BotrunDocs/
 ### 前置條件
 
 1. 安裝 [Claude Code](https://claude.ai/code)
-2. clone 這個 repo
-3. 在專案目錄開啟 Claude Code
+2. 安裝 [Firebase CLI](https://firebase.google.com/docs/cli)：`npm install -g firebase-tools`
+3. clone 這個 repo
+4. 在專案目錄開啟 Claude Code
+5. 首次部署需設定 gcloud 身分驗證（見下方「部署」章節）
 
 ### 方法一：完整更新（推薦）
 
@@ -94,6 +96,8 @@ AI 會引導你走完更新步驟：
 | 只分析差異 | `/insight` | 看完資料後產出變更建議 |
 | 只改內容 | `/update-content` | 根據已有建議修改 HTML |
 | 只更新 AI 檔案 | `/build` | 從 HTML 重新產生 llms.txt 等 |
+| 部署上線 | `/deploy` | build + Firebase 部署 |
+| 監控可見性 | `/monitor` | 基礎設施檢查 + AI 搜尋實測 |
 
 ### 方法三：手動編輯
 
@@ -117,25 +121,73 @@ python3 -m http.server 8766 -d site
 
 ### 部署上線
 
-網站託管在 Google Cloud Storage，部署一行指令：
+網站託管在 Firebase Hosting。在 Claude Code 中輸入 `/deploy` 即可。
+
+手動部署：
 
 ```bash
-gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-destination-objects --project=scoop-386004
+# 1. 產生 AI 檔案
+python3 .claude/skills/build/scripts/build.py
+
+# 2. 部署
+firebase deploy --only hosting --project scoop-386004
+```
+
+### 首次設定（新電腦 / 新成員）
+
+Firebase 部署透過 gcloud 身分驗證，**不需要共用帳號**，每個人用自己的 Google 帳號：
+
+```bash
+# 1. 登入 gcloud
+gcloud auth login
+
+# 2. 設定 Application Default Credentials
+gcloud auth application-default login
+
+# 3. 設定 quota project（Firebase 需要）
+gcloud auth application-default set-quota-project scoop-386004
+
+# 4. 確認 Firebase 連線成功
+firebase projects:list
+# 看到 scoop-386004 (scoop) 就代表 OK
+```
+
+#### 加入新成員
+
+專案管理者執行以下指令，新成員就能部署：
+
+```bash
+gcloud projects add-iam-policy-binding scoop-386004 \
+  --member="user:新成員email@gmail.com" \
+  --role="roles/firebasehosting.admin"
 ```
 
 ### 部署資訊
 
 | 項目 | 值 |
 |------|-----|
-| GCP 專案 | `scoop-386004` |
-| Bucket | `botrun-docs-site` |
-| 區域 | `asia-east1`（台灣） |
-| 公開網址 | https://storage.googleapis.com/botrun-docs-site/index.html |
-| llms.txt | https://storage.googleapis.com/botrun-docs-site/llms.txt |
-| GCP 帳號 | `hsiehchenwei@gmail.com` |
-| 快取時間 | 1 小時（部署後最多 1 小時生效） |
+| GCP 專案 | `scoop-386004` (scoop) |
+| Firebase Site ID | `botrun-docs` |
+| 網址 | https://botrun-docs.web.app |
+| 自訂域名 | `docs.botrun.ai`（待設定） |
+| 身分驗證 | gcloud ADC（每人用自己的 Google 帳號） |
+| 設定檔 | `firebase.json`、`.firebaserc` |
+| 部署指令 | `firebase deploy --only hosting --project scoop-386004` |
 
-> 未來如需自訂域名（如 `docs.botrun.ai`），可隨時設定 Cloud Load Balancer 或改用 Firebase Hosting，不影響內容。
+### 常見部署問題
+
+**Q：出現 403 / quota project 錯誤**
+```bash
+gcloud auth application-default set-quota-project scoop-386004
+```
+
+**Q：出現 "Cannot run login in non-interactive mode"**
+
+在一般終端機（不是 Claude Code shell）中執行 `gcloud auth application-default login`。
+
+**Q：部署後網站沒更新**
+
+Firebase Hosting 設定了 `no-cache`，部署後立即生效，不需等快取過期。
 
 ---
 
@@ -165,6 +217,47 @@ gcloud storage rsync site gs://botrun-docs-site --recursive --delete-unmatched-d
 | 部會使用者 | 合規、安全、成功案例 |
 | Bot 建立者 | 不用寫程式、步驟教學 |
 | API 工程師 | API 文件、串接方式 |
+
+---
+
+## AI 可見性監控
+
+網站部署後，需要定期確認 AI Agent 能搜尋到我們的內容。
+
+### 執行監控
+
+```bash
+# 手動檢查（有顏色輸出）
+bash scripts/monitor-ai-visibility.sh
+
+# 排程模式（無顏色，結果存檔）
+bash scripts/monitor-ai-visibility.sh --cron
+```
+
+### 監控項目（4 層 14 項自動檢查）
+
+| 層級 | 檢查內容 |
+|------|----------|
+| **第一層** GCS 可存取性 | 首頁、llms.txt、llms-full.txt、robots.txt、sitemap.xml 是否 HTTP 200 |
+| **第二層** AI 檔案驗證 | llms.txt 連結數與可存取性、死連結偵測、sitemap 頁面數 |
+| **第三層** 結構化資料 | Schema.org JSON-LD、Open Graph、meta description |
+| **第四層** 內容一致性 | 本地 vs 線上 llms.txt hash 比對 |
+
+### 執行頻率建議
+
+| 頻率 | 方式 |
+|------|------|
+| 每次部署後 | 手動執行 `bash scripts/monitor-ai-visibility.sh` |
+| 每週一次 | Claude Code 內 cron 或手動 |
+| 每月一次 | 手動到 ChatGPT / Perplexity / Gemini / Copilot 搜尋「Botrun 是什麼」驗證 |
+
+### 歷史紀錄
+
+每次執行會自動寫入 `scripts/monitor-logs/summary.csv`，格式：
+
+```
+日期,時間,通過,失敗,警告,GCS可存取,llms.txt連結數,sitemap頁面數,Schema.org,備註
+```
 
 ---
 

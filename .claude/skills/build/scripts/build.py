@@ -14,7 +14,7 @@ from html.parser import HTMLParser
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent.parent
 SITE_DIR = BASE_DIR / "site"
-DOMAIN = "https://docs.botrun.ai"
+DOMAIN = "https://botrun-docs.web.app"
 
 # 頁面定義：(site 路徑, 導航標題)
 NAV_PAGES = [

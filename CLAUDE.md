@@ -65,15 +65,26 @@ BotrunDocs/
 - 純靜態 HTML + CSS（AI 爬蟲 100% 可讀）
 - llms.txt + Schema.org JSON-LD（AI Agent 最佳化）
 - 繁體中文（台灣用語）
-- GitHub Pages → docs.botrun.ai
+- Firebase Hosting → botrun-docs.web.app（自訂域名 docs.botrun.ai 待設定）
 - 資料更新是核心：有新來源即觸發，三層管線確保品質
 - 內容方向：使用者提問列表驅動，場景導向（非功能導向）
 - 三個 TA：部會使用者、Bot 建立者（Creator）、API 串接工程師
 - **直接編輯 HTML**：不再使用 Markdown 中間層，site/ 是唯一真相
 
+## 部署
+
+- **託管：** Firebase Hosting（GCP 專案 `scoop-386004`，Site ID `botrun-docs`）
+- **網址：** https://botrun-docs.web.app
+- **身分驗證：** gcloud ADC（不需要 firebase login，用 `gcloud auth application-default login`）
+- **部署指令：** `firebase deploy --only hosting --project scoop-386004`
+- **部署 Skill：** 在 Claude Code 中輸入 `/deploy`
+- **設定檔：** `firebase.json`、`.firebaserc`
+- **AI 可見性改善計畫：** `docs/TODO-AI可見性改善計畫.md`
+
 ## 注意事項
 - **直接編輯 site/*.html**（HTML 就是唯一真相）
 - 改完 HTML 後執行 `/build` 重新產生 llms.txt、sitemap.xml 等 AI 檔案
+- 部署前執行 `/build`，部署用 `/deploy`
 - raw-sources/ 只放純原始資料，不做判斷
 - insights/ 記錄跨來源比對和變更決策
 - 參考 botrun_front 原始碼確保功能描述與實際一致

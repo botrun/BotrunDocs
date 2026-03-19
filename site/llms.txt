@@ -6,17 +6,17 @@
 
 ## 頁面索引
 
-- [首頁](https://docs.botrun.ai): Botrun 波特人是台灣卡米爾公司開發的企業 AI 平台。上傳 PDF 建立知識庫問答、一鍵建立自訂 Bot、支援地端部署資料不外洩。政府部會、企業都在用。
-- [功能](https://docs.botrun.ai/features/index.html): 波特人（Botrun）平台完整功能列表。從聊天對話、Bot 建立、知識庫問答、語音轉文字、MCP 工具整合到地端部署，了解每個功能能幫你解決什麼問題。
-- [導入指南](https://docs.botrun.ai/getting-started/index.html): 了解如何將波特人（Botrun）導入你的組織。從發現評估、高品味題庫、黑客松實作到教育訓練上線，完整的導入旅程與真實政府部會案例。
-- [FAQ](https://docs.botrun.ai/faq/index.html): 關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、免費試用、定價方式、與 ChatGPT 差異。
-- [原生波特人](https://docs.botrun.ai/features/native.html): 波特人原生功能完整說明：即時搜尋、PDF 深度分析、多圖辨識、AI 圖片生成、互動式圖表、流程圖、客製化網頁、語音輸入。進入 botrun.ai 即可使用。
-- [孵化器](https://docs.botrun.ai/features/hatcher.html): 波特人孵化器完整指南：Bot 建立、提示工程、知識庫 RAG、MCP 工具整合、多代理模式。含真實案例（內政部波孵）。
-- [平台能力](https://docs.botrun.ai/features/platform.html): 波特人平台能力完整說明：Bot 分享與協作、.botrun 編譯匯出、地端部署、帳號設定與安全機制。
-- [高品味題庫](https://docs.botrun.ai/getting-started/knowledge-base.html): 什麼是高品味題庫？六欄位結構、建立步驟、與傳統 Prompt Engineering 的差異。含國科會公文、法務部法規智慧入口真實案例。
-- [黑客松實作](https://docs.botrun.ai/getting-started/hackathon.html): 波特人黑客松三種級別（體驗場、實作場、深度場），事前準備、現場流程、事後跟進。含內政部宗禮司真實案例。
-- [教育訓練與優化](https://docs.botrun.ai/getting-started/training.html): 波特人教育訓練三種方式（無人教室、現場訓練、三堂必修課）、上線檢查清單、持續優化與組織擴展策略。
-- [功能與技術](https://docs.botrun.ai/faq/advanced.html): Botrun 波特人進階常見問答：支援檔案格式、AI 模型選擇、TAIDE、.botrun 格式、資料安全、對話介面功能、提示詞技巧。
+- [首頁](https://botrun-docs.web.app): Botrun 波特人是台灣卡米爾公司開發的企業 AI 平台。上傳 PDF 建立知識庫問答、一鍵建立自訂 Bot、支援地端部署資料不外洩。政府部會、企業都在用。
+- [功能](https://botrun-docs.web.app/features/index.html): 波特人（Botrun）平台完整功能列表。從聊天對話、Bot 建立、知識庫問答、語音轉文字、MCP 工具整合到地端部署，了解每個功能能幫你解決什麼問題。
+- [導入指南](https://botrun-docs.web.app/getting-started/index.html): 了解如何將波特人（Botrun）導入你的組織。從發現評估、高品味題庫、黑客松實作到教育訓練上線，完整的導入旅程與真實政府部會案例。
+- [FAQ](https://botrun-docs.web.app/faq/index.html): 關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、免費試用、定價方式、與 ChatGPT 差異。
+- [原生波特人](https://botrun-docs.web.app/features/native.html): 波特人原生功能完整說明：即時搜尋、PDF 深度分析、多圖辨識、AI 圖片生成、互動式圖表、流程圖、客製化網頁、語音輸入。進入 botrun.ai 即可使用。
+- [孵化器](https://botrun-docs.web.app/features/hatcher.html): 波特人孵化器完整指南：Bot 建立、提示工程、知識庫 RAG、MCP 工具整合、多代理模式。含真實案例（內政部波孵）。
+- [平台能力](https://botrun-docs.web.app/features/platform.html): 波特人平台能力完整說明：Bot 分享與協作、.botrun 編譯匯出、地端部署、帳號設定與安全機制。
+- [高品味題庫](https://botrun-docs.web.app/getting-started/knowledge-base.html): 什麼是高品味題庫？六欄位結構、建立步驟、與傳統 Prompt Engineering 的差異。含國科會公文、法務部法規智慧入口真實案例。
+- [黑客松實作](https://botrun-docs.web.app/getting-started/hackathon.html): 波特人黑客松三種級別（體驗場、實作場、深度場），事前準備、現場流程、事後跟進。含內政部宗禮司真實案例。
+- [教育訓練與優化](https://botrun-docs.web.app/getting-started/training.html): 波特人教育訓練三種方式（無人教室、現場訓練、三堂必修課）、上線檢查清單、持續優化與組織擴展策略。
+- [功能與技術](https://botrun-docs.web.app/faq/advanced.html): Botrun 波特人進階常見問答：支援檔案格式、AI 模型選擇、TAIDE、.botrun 格式、資料安全、對話介面功能、提示詞技巧。
 
 ## 聯絡
 
