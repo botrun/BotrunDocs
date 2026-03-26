@@ -55,7 +55,7 @@
       "name": "資料安全如何保障？",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "- 封閉雲端專區 — 獨立環境，與其他客戶隔離\n- 地端部署 — Docker-in-Docker 隔離架構，資料完全留在客戶機房\n- 多因素驗證（MFA） — 支援 TOTP，可強制啟用\n- 企業 SSO — 整合企業身份系統\n- 政府合規 — 符合「行政院及所屬機關（構）使用生成式 AI 參考指引」"
+        "text": "- 封閉雲端專區 — 獨立環境，與其他客戶隔離\n- 地端部署 — Docker-in-Docker 隔離架構，資料完全留在客戶機房\n- 多因素驗證（MFA） — 支援 TOTP，可強制啟用\n- SSO — 整合身份系統\n- 政府合規 — 符合「行政院及所屬機關（構）使用生成式 AI 參考指引」"
       }
     },
     {
@@ -416,26 +416,7 @@
 <p>知識庫支援：<strong>PDF、DOCX、CSV、Excel</strong>。上傳後檔案會被轉為向量儲存，使用語意搜尋技術進行檢索。</p>
 <hr />
 <h2 id="ai">支援哪些 AI 模型？</h2>
-<p>波特人同時支援開放模型與商用模型：</p>
-<table>
-<thead>
-<tr>
-<th>類型</th>
-<th>說明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>開放模型</strong></td>
-<td>如 Llama-4-Maverick，部署在國網中心，免費使用</td>
-</tr>
-<tr>
-<td><strong>商用模型</strong></td>
-<td>如 Claude Sonnet 4、Claude Haiku 4.5，需付費</td>
-</tr>
-</tbody>
-</table>
-<p>使用者在建立 Bot 時可依需求選擇。開放模型適合一般用途；商用模型提供更高品質的回應。</p>
+<p>波特人支援多個提供商的 AI 模型，包括 Llama-4-Maverick、Claude Sonnet 4、Claude Haiku 4.5 等。使用者在建立 Bot 時可依需求選擇適合的模型。</p>
 <hr />
 <h2 id="botrun-taide">Botrun 跟 TAIDE 有什麼關係？</h2>
 <p>Botrun 整合了台灣本土 <strong>TAIDE 大型語言模型</strong>，推出 taide-botrun 融合模型：</p>
@@ -450,7 +431,7 @@
 <li><strong>封閉雲端專區</strong> — 獨立環境，與其他客戶隔離</li>
 <li><strong>地端部署</strong> — Docker-in-Docker 隔離架構，資料完全留在客戶機房</li>
 <li><strong>多因素驗證（MFA）</strong> — 支援 TOTP，可強制啟用</li>
-<li><strong>企業 SSO</strong> — 整合企業身份系統</li>
+<li><strong>SSO</strong> — 整合身份系統</li>
 <li><strong>政府合規</strong> — 符合「行政院及所屬機關（構）使用生成式 AI 參考指引」</li>
 </ul>
 <hr />

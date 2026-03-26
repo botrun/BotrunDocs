@@ -1,0 +1,38 @@
+開發紀錄 2026-03-26 12:53 (台灣時間)
+========================================
+
+## 任務
+全站內容修正：移除免費試用、修正定價資訊、移除「企業」用語
+
+## 完成項目
+1. 移除所有「免費試用」「免費體驗」「免費註冊」相關文字
+2. 移除 FAQ 中「可以免費體驗嗎？」整個段落（含 Schema.org JSON-LD）
+3. 修正小額採購金額：4.9 萬 → 14.9 萬
+4. 移除具體資源包數字（問一次四台幣、四十八萬封頂）→ 改為「有資源額度包」
+5. 移除「台灣本土企業 AI 平台」→ 改為「台灣卡米爾公司開發的 AI 平台」
+6. 移除「企業 SSO」→ 改為「SSO」、「整合企業身份系統」→「整合身份系統」
+7. 移除「企業 AI 平台」→ 改為「AI 平台」
+8. 移除「開放模型 vs 商用模型」整個區塊（features/platform.html、faq/advanced.html）
+9. 移除模型列表中的「免費使用」「需付費」標籤
+10. 修正 build.py 中的 llms.txt 模板
+11. 重新產生 llms.txt、llms-full.txt、sitemap.xml、robots.txt
+
+## 修改檔案
+- site/index.html
+- site/faq/index.html
+- site/faq/advanced.html
+- site/features/index.html
+- site/features/platform.html
+- site/getting-started/index.html
+- site/getting-started/knowledge-base.html
+- .claude/skills/build/scripts/build.py
+- site/llms.txt、llms-full.txt、sitemap.xml（由 build 重新產生）
+
+## 地雷
+- 遠端專案結構已改變：content/ 目錄被移除，site/ HTML 是唯一真相。嘗試 rebase 時大量衝突。
+- 需要先 git reset --hard origin/main 再在新架構上重做修改。
+- Schema.org JSON-LD 中的 "price": "0" 和 "description": "免費試用 1 個月" 也需要同步修改。
+
+## 經驗
+- 改 HTML 後需要重跑 build.py 產生 AI 檔案（llms.txt 等）
+- 全面掃描用 Grep 確保無遺漏，包括 meta tags、Schema.org、OG tags 都要檢查

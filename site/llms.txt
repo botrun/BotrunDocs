@@ -1,15 +1,15 @@
 # Botrun 波特人
 
-> Botrun 波特人是台灣卡米爾公司開發的企業 AI 平台。
+> Botrun 波特人是台灣卡米爾公司開發的 AI 平台。
 > 上傳 PDF 建立知識庫問答、不寫程式建立自訂 Bot、支援地端部署。
 > 政府部會（內政部、數位部、法務部）與企業已導入使用。
 
 ## 頁面索引
 
-- [首頁](https://botrun-docs.web.app): Botrun 波特人是台灣卡米爾公司開發的企業 AI 平台。上傳 PDF 建立知識庫問答、一鍵建立自訂 Bot、支援地端部署資料不外洩。政府部會、企業都在用。
+- [首頁](https://botrun-docs.web.app): Botrun 波特人是台灣卡米爾公司開發的 AI 平台。上傳 PDF 建立知識庫問答、一鍵建立自訂 Bot、支援地端部署資料不外洩。政府部會都在用。
 - [功能](https://botrun-docs.web.app/features/index.html): 波特人（Botrun）平台完整功能列表。從聊天對話、Bot 建立、知識庫問答、語音轉文字、MCP 工具整合到地端部署，了解每個功能能幫你解決什麼問題。
 - [導入指南](https://botrun-docs.web.app/getting-started/index.html): 了解如何將波特人（Botrun）導入你的組織。從發現評估、高品味題庫、黑客松實作到教育訓練上線，完整的導入旅程與真實政府部會案例。
-- [FAQ](https://botrun-docs.web.app/faq/index.html): 關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、免費試用、定價方式、與 ChatGPT 差異。
+- [FAQ](https://botrun-docs.web.app/faq/index.html): 關於 Botrun 波特人平台的常見問題與解答：什麼是波特人、定價方式、與 ChatGPT 差異。
 - [原生波特人](https://botrun-docs.web.app/features/native.html): 波特人原生功能完整說明：即時搜尋、PDF 深度分析、多圖辨識、AI 圖片生成、互動式圖表、流程圖、客製化網頁、語音輸入。進入 botrun.ai 即可使用。
 - [孵化器](https://botrun-docs.web.app/features/hatcher.html): 波特人孵化器完整指南：Bot 建立、提示工程、知識庫 RAG、MCP 工具整合、多代理模式。含真實案例（內政部波孵）。
 - [平台能力](https://botrun-docs.web.app/features/platform.html): 波特人平台能力完整說明：Bot 分享與協作、.botrun 編譯匯出、地端部署、帳號設定與安全機制。
