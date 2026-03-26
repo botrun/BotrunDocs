@@ -69,9 +69,9 @@ firebase deploy --only hosting --project scoop-386004
 ### 4. 驗證部署結果
 
 ```bash
-curl -s -o /dev/null -w "%{http_code}" https://botrun-docs.web.app/
-curl -s -o /dev/null -w "%{http_code}" https://botrun-docs.web.app/llms.txt
-curl -s -o /dev/null -w "%{http_code}" https://botrun-docs.web.app/sitemap.xml
+curl -s -o /dev/null -w "%{http_code}" https://docs.botrun.ai/
+curl -s -o /dev/null -w "%{http_code}" https://docs.botrun.ai/llms.txt
+curl -s -o /dev/null -w "%{http_code}" https://docs.botrun.ai/sitemap.xml
 ```
 
 三個都要是 HTTP 200。
@@ -80,7 +80,7 @@ curl -s -o /dev/null -w "%{http_code}" https://botrun-docs.web.app/sitemap.xml
 
 ```
 ✅ 部署完成：
-   - 網址：https://botrun-docs.web.app
+   - 網址：https://docs.botrun.ai
    - 首頁：HTTP 200
    - llms.txt：HTTP 200
    - sitemap.xml：HTTP 200
@@ -93,8 +93,8 @@ curl -s -o /dev/null -w "%{http_code}" https://botrun-docs.web.app/sitemap.xml
 |------|-----|
 | Firebase 專案 | `scoop-386004` (scoop) |
 | Hosting Site ID | `botrun-docs` |
+| 網址 | https://docs.botrun.ai |
 | Firebase URL | https://botrun-docs.web.app |
-| 自訂域名 | `docs.botrun.ai`（待設定） |
 | 身分驗證 | gcloud ADC（不需要 firebase login） |
 | 設定檔 | `firebase.json`、`.firebaserc` |
 

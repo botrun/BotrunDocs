@@ -13,7 +13,7 @@ set -uo pipefail
 # --- 設定 ---
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
-SITE_BASE="https://botrun-docs.web.app"
+SITE_BASE="https://docs.botrun.ai"
 LOG_DIR="${SCRIPT_DIR}/monitor-logs"
 TIMESTAMP=$(date '+%Y-%m-%d_%H%M%S')
 LOG_FILE="${LOG_DIR}/monitor-${TIMESTAMP}.log"
@@ -26,7 +26,7 @@ SEARCH_QUERIES=(
   "botrun.ai 功能"
 )
 
-DOCS_URL_PATTERN="botrun-docs.web.app"
+DOCS_URL_PATTERN="docs.botrun.ai"
 
 # --- 模式判斷 ---
 CRON_MODE=false
@@ -119,11 +119,11 @@ if [ -n "$LLMS_CONTENT" ]; then
     fi
   fi
 
-  BAD_LINKS=$(echo "$LLMS_CONTENT" | grep -c "docs\.botrun\.ai" || true)
+  BAD_LINKS=$(echo "$LLMS_CONTENT" | grep -c "botrun-docs\.web\.app" || true)
   if [ "$BAD_LINKS" -gt 0 ]; then
-    log_fail "llms.txt 仍有 $BAD_LINKS 個指向 docs.botrun.ai 的未生效連結"
+    log_fail "llms.txt 仍有 $BAD_LINKS 個指向舊網址 botrun-docs.web.app 的連結"
   else
-    log_pass "llms.txt 無死連結"
+    log_pass "llms.txt 已全部使用 docs.botrun.ai"
   fi
 else
   log_fail "無法取得 llms.txt 內容"
@@ -151,11 +151,11 @@ if [ -n "$SITEMAP_CONTENT" ]; then
     log_warn "sitemap.xml 僅有 $page_count 個頁面（預期 >=5）"
   fi
 
-  BAD_SITEMAP=$(echo "$SITEMAP_CONTENT" | grep -c "docs\.botrun\.ai" || true)
+  BAD_SITEMAP=$(echo "$SITEMAP_CONTENT" | grep -c "botrun-docs\.web\.app" || true)
   if [ "$BAD_SITEMAP" -gt 0 ]; then
-    log_fail "sitemap.xml 仍有 $BAD_SITEMAP 個指向 docs.botrun.ai 的未生效連結"
+    log_fail "sitemap.xml 仍有 $BAD_SITEMAP 個指向舊網址 botrun-docs.web.app 的連結"
   else
-    log_pass "sitemap.xml 無死連結"
+    log_pass "sitemap.xml 已全部使用 docs.botrun.ai"
   fi
 fi
 
@@ -208,11 +208,11 @@ echo ""
 # --- 第五層：Google 搜尋引擎收錄檢查 ---
 echo "── 第五層：Google 搜尋收錄 ──"
 
-SITE_INDEXED=$(curl -s --max-time 15 -A "Mozilla/5.0" "https://www.google.com/search?q=site:botrun-docs.web.app" 2>/dev/null || echo "")
-if echo "$SITE_INDEXED" | grep -qi "botrun-docs"; then
-  log_pass "Google 已收錄 botrun-docs.web.app"
+SITE_INDEXED=$(curl -s --max-time 15 -A "Mozilla/5.0" "https://www.google.com/search?q=site:docs.botrun.ai" 2>/dev/null || echo "")
+if echo "$SITE_INDEXED" | grep -qi "botrun"; then
+  log_pass "Google 已收錄 docs.botrun.ai"
 else
-  log_fail "Google 尚未收錄 botrun-docs.web.app"
+  log_fail "Google 尚未收錄 docs.botrun.ai"
 fi
 
 MAIN_INDEXED=$(curl -s --max-time 15 -A "Mozilla/5.0" "https://www.google.com/search?q=site:botrun.ai" 2>/dev/null || echo "")

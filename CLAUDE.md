@@ -65,7 +65,7 @@ BotrunDocs/
 - 純靜態 HTML + CSS（AI 爬蟲 100% 可讀）
 - llms.txt + Schema.org JSON-LD（AI Agent 最佳化）
 - 繁體中文（台灣用語）
-- Firebase Hosting → botrun-docs.web.app（自訂域名 docs.botrun.ai 待設定）
+- Firebase Hosting → docs.botrun.ai（自訂域名已設定）
 - 資料更新是核心：有新來源即觸發，三層管線確保品質
 - 內容方向：使用者提問列表驅動，場景導向（非功能導向）
 - 三個 TA：部會使用者、Bot 建立者（Creator）、API 串接工程師
@@ -74,7 +74,7 @@ BotrunDocs/
 ## 部署
 
 - **託管：** Firebase Hosting（GCP 專案 `scoop-386004`，Site ID `botrun-docs`）
-- **網址：** https://botrun-docs.web.app
+- **網址：** https://docs.botrun.ai
 - **身分驗證：** gcloud ADC（不需要 firebase login，用 `gcloud auth application-default login`）
 - **部署指令：** `firebase deploy --only hosting --project scoop-386004`
 - **部署 Skill：** 在 Claude Code 中輸入 `/deploy`

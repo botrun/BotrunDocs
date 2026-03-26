@@ -3,7 +3,7 @@
 讓 AI Agent（Claude、ChatGPT、Gemini）能正確回答使用者關於 Botrun 的問題。
 
 > 狀態：已上線
-> 網址：https://botrun-docs.web.app（自訂域名 docs.botrun.ai 待設定）
+> 網址：https://docs.botrun.ai
 > 託管：Firebase Hosting（GCP 專案 `scoop-386004`）
 
 ---
@@ -168,8 +168,8 @@ gcloud projects add-iam-policy-binding scoop-386004 \
 |------|-----|
 | GCP 專案 | `scoop-386004` (scoop) |
 | Firebase Site ID | `botrun-docs` |
-| 網址 | https://botrun-docs.web.app |
-| 自訂域名 | `docs.botrun.ai`（待設定） |
+| 網址 | https://docs.botrun.ai |
+| Firebase URL | https://botrun-docs.web.app |
 | 身分驗證 | gcloud ADC（每人用自己的 Google 帳號） |
 | 設定檔 | `firebase.json`、`.firebaserc` |
 | 部署指令 | `firebase deploy --only hosting --project scoop-386004` |

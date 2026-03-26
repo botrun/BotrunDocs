@@ -1,58 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://botrun-docs.web.app</loc>
+    <loc>https://docs.botrun.ai</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/features/index.html</loc>
+    <loc>https://docs.botrun.ai/features/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/index.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/getting-started/index.html</loc>
+    <loc>https://docs.botrun.ai/getting-started/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/index.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/faq/index.html</loc>
+    <loc>https://docs.botrun.ai/faq/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/faq/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/faq/index.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/features/native.html</loc>
+    <loc>https://docs.botrun.ai/features/native.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/native.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/native.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/features/hatcher.html</loc>
+    <loc>https://docs.botrun.ai/features/hatcher.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/hatcher.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/hatcher.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/features/platform.html</loc>
+    <loc>https://docs.botrun.ai/features/platform.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/platform.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/platform.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/getting-started/knowledge-base.html</loc>
+    <loc>https://docs.botrun.ai/getting-started/knowledge-base.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/knowledge-base.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/knowledge-base.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/getting-started/hackathon.html</loc>
+    <loc>https://docs.botrun.ai/getting-started/hackathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/hackathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/hackathon.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/getting-started/training.html</loc>
+    <loc>https://docs.botrun.ai/getting-started/training.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/training.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/training.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://botrun-docs.web.app/faq/advanced.html</loc>
+    <loc>https://docs.botrun.ai/faq/advanced.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/faq/advanced.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/faq/advanced.html"/>
     <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/features/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/index.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/getting-started/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/index.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/faq/index.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/faq/index.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/faq/index.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/features/native.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/native.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/native.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/features/hatcher.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/hatcher.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/hatcher.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/features/platform.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/platform.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/platform.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/getting-started/knowledge-base.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/knowledge-base.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/knowledge-base.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/getting-started/hackathon.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/hackathon.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/hackathon.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/getting-started/training.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/training.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/training.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docs.botrun.ai/en/faq/advanced.html</loc>
+    <xhtml:link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/faq/advanced.html"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/faq/advanced.html"/>
+    <lastmod>2026-03-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
 </urlset>
