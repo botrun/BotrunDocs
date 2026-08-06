@@ -22,3 +22,6 @@ docs/
 __pycache__/
 *.pyc
 .DS_Store
+
+# Firebase 部署快取
+.firebase/

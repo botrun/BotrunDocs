@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Native Botrun — AI Capabilities Ready to Use, No Setup Required</title>
+  <meta name="description" content="Complete guide to Botrun's native features: real-time search, PDF deep analysis, multi-image recognition, AI image generation, interactive charts, flowcharts, custom web pages, and voice input. Available instantly at botrun.ai.">
+  <meta name="keywords" content="Botrun native features, AI search, PDF analysis, image generation, speech-to-text, Plotly charts, Mermaid flowcharts">
+  <link rel="canonical" href="https://docs.botrun.ai/en/features/native.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Native Botrun — AI Capabilities Ready to Use, No Setup Required">
+  <meta property="og:description" content="Complete guide to Botrun's native features: real-time search, PDF deep analysis, multi-image recognition, AI image generation, interactive charts, flowcharts, custom web pages, and voice input. Available instantly at botrun.ai.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/en/features/native.html">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Native Botrun — AI Capabilities Ready to Use, No Setup Required",
+  "description": "Complete guide to Botrun's native features: real-time search, PDF deep analysis, multi-image recognition, AI image generation, interactive charts, flowcharts, custom web pages, and voice input. Available instantly at botrun.ai.",
+  "url": "https://docs.botrun.ai/en/features/native.html",
+  "inLanguage": "en",
+  "dateModified": "2026-03-26"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://docs.botrun.ai/en"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Features",
+      "item": "https://docs.botrun.ai/en/features/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Native Botrun",
+      "item": "https://docs.botrun.ai/en/features/native.html"
+    }
+  ]
+}
+  </script>
+
+  <link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/native.html">
+  <link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/native.html">
+  <link rel="alternate" hreflang="x-default" href="https://docs.botrun.ai/features/native.html">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* Main content */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Headings */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* Paragraphs & lists */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* Links */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* Code */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Horizontal rule */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* Emphasis */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* Docs layout: sidebar + content */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* Mobile sidebar */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">Home</a>
+        <a href="../features/index.html" class="active">Features</a>
+        <a href="../getting-started/index.html">Getting Started</a>
+        <a href="../faq/index.html">FAQ</a>
+        <a href="../../features/native.html" class="lang-switch" style="margin-left:auto;border:1px solid var(--border);font-size:0.8rem;">中文</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">Features Overview</a>
+      <a href="native.html" class="active">Native Botrun</a>
+      <a href="hatcher.html">Hatcher (Bot Builder)</a>
+      <a href="platform.html">Platform Capabilities</a>
+    </aside>
+    <main>
+<h1 id="native-botrun">Native Botrun</h1>
+<blockquote>
+<p><strong>No setup, no configuration — all features available the moment you visit botrun.ai.</strong></p>
+</blockquote>
+<p>&larr; <a href="index.html">Back to Features Overview</a></p>
+<p>Open Botrun and you immediately have a full-featured AI assistant. It comes with 7 built-in capabilities:</p>
+<p><a href="#search">Real-time Search</a> · <a href="#pdf">PDF Deep Analysis</a> · <a href="#image">Multi-Image Recognition</a> · <a href="#gen">AI Image Generation</a> · <a href="#chart">Interactive Charts</a> · <a href="#flow">Flow & Architecture Diagrams</a> · <a href="#web">Custom Web Pages</a></p>
+<hr />
+<p><a id="search"></a></p>
+<h2 id="real-time-search">Real-time Search</h2>
+<blockquote>
+<p><strong>Ask about the latest news — AI searches the web for you, with source citations included.</strong></p>
+</blockquote>
+<h3 id="what-you-can-do-1">What You Can Do</h3>
+<ul>
+<li>Ask questions like "What is TSMC's stock price today?" or "What's the weather tomorrow?"</li>
+<li>AI performs deep search via Perplexity</li>
+<li>Answers include <strong>source citations</strong> so information is traceable</li>
+<li>Supports simultaneous text and image search</li>
+</ul>
+<h3 id="how-to-use-1">How to Use</h3>
+<p>Simply ask real-time questions in the conversation. Botrun automatically determines whether a web search is needed.</p>
+<hr />
+<p><a id="pdf"></a></p>
+<h2 id="pdf-analysis">PDF Deep Analysis</h2>
+<blockquote>
+<p><strong>Upload a PDF and let AI read it and answer your questions.</strong></p>
+</blockquote>
+<h3 id="what-you-can-do-2">What You Can Do</h3>
+<ul>
+<li>Upload large PDF files (automatically compressed and segmented)</li>
+<li>Ask questions about contracts, papers, and reports</li>
+<li>Summarize key points and extract specific data</li>
+<li>Compare differences across multiple documents</li>
+</ul>
+<h3 id="how-to-use-2">How to Use</h3>
+<p>Drag and drop or click to upload a PDF (up to 200MB), then ask questions in natural language.</p>
+<hr />
+<p><a id="image"></a></p>
+<h2 id="multi-image">Multi-Image Recognition</h2>
+<blockquote>
+<p><strong>Upload multiple images and let AI recognize and analyze them all at once.</strong></p>
+</blockquote>
+<h3 id="what-you-can-do-3">What You Can Do</h3>
+<ul>
+<li>Upload multiple images simultaneously</li>
+<li>Identify objects, text, and people in images</li>
+<li>Interpret chart data (bar charts, pie charts, etc.)</li>
+<li>Generate creative ideas or comparative analysis based on image content</li>
+</ul>
+<h3 id="how-to-use-3">How to Use</h3>
+<p>Upload images and tell Botrun what you want to know.</p>
+<hr />
+<p><a id="gen"></a></p>
+<h2 id="ai-image-gen">AI Image Generation</h2>
+<blockquote>
+<p><strong>Describe what you want in text, and AI generates high-quality images.</strong></p>
+</blockquote>
+<h3 id="what-you-can-do-4">What You Can Do</h3>
+<ul>
+<li>Describe the image you want (the more detail, the better)</li>
+<li>AI generates images using DALL-E 3 technology</li>
+<li>Supports photorealistic images and various art styles</li>
+<li>Generated images have permanent links that never expire</li>
+</ul>
+<h3 id="how-to-use-4">How to Use</h3>
+<p>Describe the scene you want in the conversation. For example: "Draw Taipei 101 at sunset in watercolor style."</p>
+<hr />
+<p><a id="chart"></a></p>
+<h2 id="interactive-charts">Interactive Charts</h2>
+<blockquote>
+<p><strong>Give Botrun your data, and it creates interactive charts for you.</strong></p>
+</blockquote>
+<h3 id="what-you-can-do-5">What You Can Do</h3>
+<ul>
+<li><strong>Line charts</strong>: trend analysis, time series</li>
+<li><strong>Pie charts</strong>: proportion distribution</li>
+<li><strong>Scatter plots</strong>: correlation analysis</li>
+<li><strong>Heatmaps</strong>: density distribution</li>
+<li><strong>3D charts</strong>: three-dimensional data visualization</li>
+<li><strong>Geographic maps</strong>: geolocation data visualization</li>
+</ul>
+<h3 id="highlights">Highlights</h3>
+<p>Output is interactive HTML (using Plotly). You can zoom, click data points, and hover to view values in your browser.</p>
+<h3 id="how-to-use-5">How to Use</h3>
+<p>Paste data directly or upload a CSV, and tell Botrun what chart you want to see.</p>
+<hr />
+<p><a id="flow"></a></p>
+<h2 id="flow-diagrams">Flow & Architecture Diagrams</h2>
+<blockquote>
+<p><strong>AI creates professional flowcharts, architecture diagrams, and Gantt charts for you.</strong></p>
+</blockquote>
+<h3 id="supported-types">Supported Diagram Types</h3>
+<table>
+<thead>
+<tr>
+<th>Diagram Type</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flowchart</td>
+<td>System architecture, decision processes</td>
+</tr>
+<tr>
+<td>Sequence Diagram</td>
+<td>API interactions, system communication</td>
+</tr>
+<tr>
+<td>Gantt Chart</td>
+<td>Project scheduling</td>
+</tr>
+<tr>
+<td>ER Diagram</td>
+<td>Database relationship design</td>
+</tr>
+<tr>
+<td>Mind Map</td>
+<td>Brainstorming, concept organization</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-to-use-6">How to Use</h3>
+<p>Describe your process or architecture, and Botrun automatically generates diagrams using Mermaid syntax.</p>
+<hr />
+<p><a id="web"></a></p>
+<h2 id="custom-web">Custom Web Pages</h2>
+<blockquote>
+<p><strong>AI writes a complete web page for you, with a permanent link.</strong></p>
+</blockquote>
+<h3 id="what-you-can-do-6">What You Can Do</h3>
+<ul>
+<li>AI creates complete HTML pages</li>
+<li>Automatically integrates Tailwind CSS (styling), Alpine.js (interactivity), and Chart.js (charts)</li>
+<li>Generated pages have permanent links that never expire</li>
+<li>Great for quickly building presentation pages, data dashboards, and event pages</li>
+</ul>
+<h3 id="how-to-use-7">How to Use</h3>
+<p>Describe the web page you want, and Botrun will generate it. For example: "Create a project progress dashboard web page for me."</p>
+<hr />
+<h2 id="precise-time">Precise Time</h2>
+<p>Botrun always knows the current Taipei Standard Time (UTC+8), so it never gets confused when handling relative time expressions like "today," "next week," or "last year."</p>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>&larr; <a href="index.html">Back to Features Overview</a></li>
+<li><strong>Want to build your own Bot?</strong> &rarr; See <a href="hatcher.html">Hatcher Features</a></li>
+<li><strong>Want to learn about platform capabilities?</strong> &rarr; See <a href="platform.html">Platform Capabilities</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">☰</button>
+  <footer>
+    <p>Botrun — CAMEO INC.</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>Last updated: 2026-03-26</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

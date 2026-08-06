@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Botrun Getting Started — Complete Guide from First Contact to AI Deployment</title>
+  <meta name="description" content="Learn how to deploy Botrun in your organization. A complete journey from discovery and evaluation, Quality Question Bank, hackathon validation to training and launch, with real government agency case studies.">
+  <meta name="keywords" content="Botrun getting started, AI deployment guide, Quality Question Bank, government AI, training, hackathon">
+  <link rel="canonical" href="https://docs.botrun.ai/en/getting-started/index.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Botrun Getting Started — Complete Guide from First Contact to AI Deployment">
+  <meta property="og:description" content="Learn how to deploy Botrun in your organization. A complete journey from discovery and evaluation, Quality Question Bank, hackathon validation to training and launch, with real government agency case studies.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/en/getting-started/index.html">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/index.html">
+  <link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/index.html">
+  <link rel="alternate" hreflang="x-default" href="https://docs.botrun.ai/getting-started/index.html">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Botrun Getting Started — Complete Guide from First Contact to AI Deployment",
+  "description": "Learn how to deploy Botrun in your organization. A complete journey from discovery and evaluation, Quality Question Bank, hackathon validation to training and launch, with real government agency case studies.",
+  "url": "https://docs.botrun.ai/en/getting-started/index.html",
+  "inLanguage": "en",
+  "dateModified": "2026-03-26"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://docs.botrun.ai/en"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Getting Started",
+      "item": "https://docs.botrun.ai/en/getting-started/index.html"
+    }
+  ]
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* Main content */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Headings */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* Paragraphs & lists */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* Links */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* Code */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Horizontal rule */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* Emphasis */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* Docs layout: sidebar + content */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* Mobile sidebar */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">Home</a>
+        <a href="../features/index.html">Features</a>
+        <a href="../getting-started/index.html" class="active">Getting Started</a>
+        <a href="../faq/index.html">FAQ</a>
+        <a href="../../getting-started/index.html" class="lang-switch" style="margin-left:auto;border:1px solid var(--border);font-size:0.8rem;">中文</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="active">Getting Started</a>
+      <a href="knowledge-base.html">Quality Question Bank</a>
+      <a href="hackathon.html">Hackathon</a>
+      <a href="training.html">Training & Optimization</a>
+    </aside>
+    <main>
+<h1 id="_1">Botrun Getting Started Journey</h1>
+<p>Your organization wants to adopt AI but doesn't know where to start? This guide walks you through the complete journey from "first contact" to "full-scale AI deployment."</p>
+<p>Each stage includes real government agency case studies, so you can see how others did it, what pitfalls they encountered, and what results they achieved.</p>
+<hr />
+<h2 id="_2">Four Stages of Deployment</h2>
+<table>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Timeline</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="#evaluate">1. Discovery & Evaluation</a></strong></td>
+<td>1-2 weeks</td>
+<td>Contact the team, free trial, scenario validation</td>
+</tr>
+<tr>
+<td><strong><a href="knowledge-base.html">2. Quality Question Bank</a></strong></td>
+<td>2-4 weeks</td>
+<td>The key methodology for successful deployment</td>
+</tr>
+<tr>
+<td><strong><a href="hackathon.html">3. Hackathon Validation</a></strong></td>
+<td>Half day to 3 days</td>
+<td>Bring real data for on-site validation</td>
+</tr>
+<tr>
+<td><strong><a href="training.html">4. Training & Optimization</a></strong></td>
+<td>2-4 weeks</td>
+<td>Go live, learn, and continuously expand</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><a id="evaluate"></a></p>
+<h2 id="1-2">1. Discovery & Evaluation (1-2 weeks)</h2>
+<blockquote>
+<p><strong>Your question:</strong> Our department wants to adopt AI, but we're not sure if it's the right fit. What do we need to prepare?</p>
+</blockquote>
+<h3 id="_3">What You Can Do</h3>
+<ol>
+<li><strong>Contact the Botrun team</strong>: Describe your needs, and the team will respond within 2-3 days</li>
+<li><strong>Try it out</strong>: Register at <a href="https://botrun.ai">botrun.ai</a> for a free 1-month trial</li>
+<li><strong>Start scenario validation</strong>: Conduct requirement and workflow validation based on your specific use cases</li>
+</ol>
+<h3 id="_4">Real Case: How the National Audit Office Found Botrun</h3>
+<p>Mr. Yen from the National Audit Office discovered Botrun through a government procurement award notice. He called to inquire about AI adoption. The Botrun team called back within two days, arranged a requirements meeting, and confirmed the Audit Office's AI application direction.</p>
+<blockquote>
+<p>You don't need to have all your requirements figured out from the start. Just bring the one problem you most want to solve, and the Botrun team will help you clarify how AI can help.</p>
+</blockquote>
+<h3 id="ai">AI Deployment Priority Assessment</h3>
+<p>Use three dimensions to quickly determine which tasks are best suited for AI adoption:</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frequency</td>
+<td>Does the problem occur frequently?</td>
+</tr>
+<tr>
+<td>Time Cost</td>
+<td>Is it time-consuming to solve manually?</td>
+</tr>
+<tr>
+<td>Feasibility</td>
+<td>Can AI implement it quickly?</td>
+</tr>
+</tbody>
+</table>
+<p>If all three are positive (+) — high priority, act now.</p>
+<h3 id="_5">Evaluation Checklist</h3>
+<table>
+<thead>
+<tr>
+<th>Your Concern</th>
+<th>Botrun's Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Will our data leak?</td>
+<td>Supports on-premise deployment; data never leaves your internal network</td>
+</tr>
+<tr>
+<td>Does it comply with government regulations?</td>
+<td>Compliant with Executive Yuan AI guidelines; multiple agencies have passed security audits</td>
+</tr>
+<tr>
+<td>Do we need programming skills?</td>
+<td>No. Build Bots through the Hatcher drag-and-drop interface</td>
+</tr>
+<tr>
+<td>How is pricing calculated?</td>
+<td>Pay-per-use with a cost cap; small purchases under 49K TWD require no evaluation committee</td>
+</tr>
+<tr>
+<td>Has anyone used it before?</td>
+<td>Multiple government agencies including Ministry of Interior, Ministry of Digital Affairs, Ministry of Justice, and National Science and Technology Council have adopted it</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_6">Pricing & Procurement</h2>
+<table>
+<thead>
+<tr>
+<th>Procurement Method</th>
+<th>Amount Range</th>
+<th>Process</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Free Trial</strong></td>
+<td>0 TWD</td>
+<td>Register and try for 1 month</td>
+</tr>
+<tr>
+<td><strong>Small Purchase</strong></td>
+<td>Under 49K TWD</td>
+<td>No evaluation committee or bidding required</td>
+</tr>
+<tr>
+<td><strong>Character Packs</strong></td>
+<td>Pay-per-use + cap</td>
+<td>"4 TWD per query, capped at 480K TWD"</td>
+</tr>
+<tr>
+<td><strong>Annual Contract</strong></td>
+<td>Custom quote</td>
+<td>Includes training, Human-Centered Ambassador, technical support</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Advice for government procurement officers:</strong> Start with the free trial for internal evaluation, then use a small purchase to buy a character pack for one department to pilot. Once you see results, apply for annual budget.</p>
+</blockquote>
+<hr />
+<h2 id="_7">Next Steps</h2>
+<ul>
+<li><strong>Want to try it?</strong> — Register for free at <a href="https://botrun.ai">botrun.ai</a></li>
+<li><strong>Want to learn more about features?</strong> — See <a href="../features/index.html">Features</a></li>
+<li><strong>Have other questions?</strong> — See <a href="../faq/index.html">FAQ</a></li>
+<li><strong>Want to contact us directly?</strong> — service@cameo.tw / 02-2912-5028</li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">☰</button>
+  <footer>
+    <p>Botrun — CAMEO INC.</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>Last updated: 2026-03-26</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

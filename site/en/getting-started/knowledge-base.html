@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quality Question Bank — The Key Methodology for Successful AI Deployment</title>
+  <meta name="description" content="What is a Quality Question Bank? Six-field structure, building steps, and differences from traditional Prompt Engineering. Includes real case studies from the National Science and Technology Council and Ministry of Justice.">
+  <meta name="keywords" content="Quality Question Bank, Prompt Engineering, RAG, knowledge base, AI deployment, government AI">
+  <link rel="canonical" href="https://docs.botrun.ai/en/getting-started/knowledge-base.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Quality Question Bank — The Key Methodology for Successful AI Deployment">
+  <meta property="og:description" content="What is a Quality Question Bank? Six-field structure, building steps, and differences from traditional Prompt Engineering. Includes real case studies from the National Science and Technology Council and Ministry of Justice.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/en/getting-started/knowledge-base.html">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Hreflang -->
+  <link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/getting-started/knowledge-base.html">
+  <link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/getting-started/knowledge-base.html">
+  <link rel="alternate" hreflang="x-default" href="https://docs.botrun.ai/getting-started/knowledge-base.html">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Quality Question Bank — The Key Methodology for Successful AI Deployment",
+  "description": "What is a Quality Question Bank? Six-field structure, building steps, and differences from traditional Prompt Engineering. Includes real case studies from the National Science and Technology Council and Ministry of Justice.",
+  "url": "https://docs.botrun.ai/en/getting-started/knowledge-base.html",
+  "inLanguage": "en",
+  "dateModified": "2026-03-26"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://docs.botrun.ai/en"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Getting Started",
+      "item": "https://docs.botrun.ai/en/getting-started/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Quality Question Bank",
+      "item": "https://docs.botrun.ai/en/getting-started/knowledge-base.html"
+    }
+  ]
+}
+  </script>
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* Main content */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Headings */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* Paragraphs & lists */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* Links */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* Code */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Horizontal rule */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* Emphasis */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* Docs layout: sidebar + content */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* Mobile sidebar */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">Home</a>
+        <a href="../features/index.html">Features</a>
+        <a href="../getting-started/index.html" class="active">Getting Started</a>
+        <a href="../faq/index.html">FAQ</a>
+        <a href="../../getting-started/knowledge-base.html" class="lang-switch" style="margin-left:auto;border:1px solid var(--border);font-size:0.8rem;">中文</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">Getting Started</a>
+      <a href="knowledge-base.html" class="active">Quality Question Bank</a>
+      <a href="hackathon.html">Hackathon</a>
+      <a href="training.html">Training & Optimization</a>
+    </aside>
+    <main>
+<h1 id="_1">Quality Question Bank — The Key to Successful Deployment</h1>
+<blockquote>
+<p><strong>How does AI learn our organization's domain expertise? How do we ensure the quality of AI responses?</strong></p>
+</blockquote>
+<p>This is <strong>the most important stop</strong> on the entire deployment journey.</p>
+<p>&larr; <a href="index.html">Back to Getting Started</a></p>
+<hr />
+<h2 id="_2">What Is a Quality Question Bank?</h2>
+<p>A Quality Question Bank is not a traditional "FAQ list" — it is a <strong>structured knowledge curriculum</strong> that enables AI to truly understand your business context.</p>
+<p>The traditional approach is to spend a lot of time on Prompt Engineering, telling AI how to respond. The Quality Question Bank approach is different — <strong>you prepare good examples, and AI automatically learns how to respond.</strong></p>
+<blockquote>
+<p>"Once you complete the Quality Question Bank, your prompt engineering will be perfect. Opus 4.6 will automatically read your Quality Question Bank and write the prompt engineering for you — generalized and without overfitting."
+— Bohan (Botrun CTO)</p>
+</blockquote>
+<hr />
+<h2 id="_3">Six-Field Structure</h2>
+<p>Each entry in the question bank contains six fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Content</th>
+<th>Example (NSTC Official Document)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. Motivation</strong></td>
+<td>Why is this task needed?</td>
+<td>"NSTC approves a professor's research grant"</td>
+</tr>
+<tr>
+<td><strong>2. Benefit Assessment</strong></td>
+<td>What benefits are achieved upon completion?</td>
+<td>"Document production time reduced from 2 hours to 10 minutes"</td>
+</tr>
+<tr>
+<td><strong>3. Question (Q)</strong></td>
+<td>The user's actual question, including all required parameters</td>
+<td>"Please draft a grant approval document. Recipient: Prof. Da-Ming Wang, Amount: 2M TWD, Project: Quantum Computing Research, Institution: NTU, Period: Jan to Dec 2026"</td>
+</tr>
+<tr>
+<td><strong>4. Answer (A)</strong></td>
+<td>The expected complete output</td>
+<td>A complete grant approval document template</td>
+</tr>
+<tr>
+<td><strong>5. Source Data</strong></td>
+<td>Reference documents</td>
+<td>Past approval documents (PDF), related regulations</td>
+</tr>
+<tr>
+<td><strong>6. Evaluation Criteria</strong></td>
+<td>Review standards</td>
+<td>"Correct format, accurate amounts, proper legal citations, appropriate official document language"</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>You don't need to fill in every field, but the core principle is: let AI know "why we're doing this," "how to do it," and "what good looks like."</p>
+</blockquote>
+<hr />
+<h2 id="vs-prompt-engineering">Quality Question Bank vs Traditional Prompt Engineering</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Traditional Prompt Engineering</th>
+<th>Quality Question Bank</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>What you do</strong></td>
+<td>Manually craft prompts, repeatedly test and adjust</td>
+<td>Prepare good examples and evaluation criteria</td>
+</tr>
+<tr>
+<td><strong>Expertise required</strong></td>
+<td>Need to understand how AI works</td>
+<td>Only need to understand your own business</td>
+</tr>
+<tr>
+<td><strong>Scalability</strong></td>
+<td>Rewrite prompts for every new task</td>
+<td>Add to the question bank, AI learns automatically</td>
+</tr>
+<tr>
+<td><strong>Quality stability</strong></td>
+<td>Prone to overfitting specific cases</td>
+<td>Strong generalization, handles new cases well</td>
+</tr>
+<tr>
+<td><strong>Who maintains it</strong></td>
+<td>Requires AI engineers</td>
+<td>Business staff can update the question bank</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_4">How to Build Your First Quality Question Bank</h2>
+<p><strong>Step 1: Choose a scenario</strong></p>
+<p>Start with the most frequent and time-consuming task in your department. For example:</p>
+<ul>
+<li>Official document drafting (grant approvals, personnel changes, procurement)</li>
+<li>Meeting minutes organization</li>
+<li>Document review (applications, environmental impact assessments)</li>
+<li>Data analysis reports</li>
+</ul>
+<p><strong>Step 2: Collect 5-10 real examples</strong></p>
+<p>Find past work that was done well. These become your "Answer (A)" field.</p>
+<blockquote>
+<p><strong>Key lesson: The question field must include complete parameters.</strong> During NSTC document testing, it was discovered that if the question only says "Help me write a grant approval document," AI will fill in random professor names and amounts. The correct approach is to include all values that need to be filled in the question. "Even if it's simulated, you must simulate it to look and feel like the real thing."</p>
+</blockquote>
+<p><strong>Step 3: Define evaluation criteria</strong></p>
+<p>Have your department's experts (section chiefs, senior staff) define: What counts as "well done"? What items should be checked?</p>
+<p><strong>Step 4: Use AI to help expand</strong></p>
+<p>Once you have 5-10 real examples, you can use AI to help generate more variations, then have experts review them.</p>
+<p><strong>Step 5: Multi-round iterative validation</strong></p>
+<p>Let real users try it out and record each round of Q&A. The latest question bank format supports:</p>
+<ul>
+<li><strong>Multiple Sheets</strong>: Each sheet is a complete task</li>
+<li><strong>Timestamps</strong>: Record the time of each iteration</li>
+<li><strong>Multi-turn conversations</strong>: Preserve the complete iteration process, not just the final result</li>
+</ul>
+<hr />
+<h2 id="_5">Real Case: NSTC Official Document Quality Question Bank</h2>
+<p><strong>Background:</strong> Over the past two years, the National Center for High-Performance Computing (NCHC) collaborated with 7 government agencies to use the TAIDE model for official documents, investing nearly 100 million TWD — all of which failed. NCHC then turned to Botrun, adopting an Agentic AI + Quality Question Bank approach.</p>
+<p>Approach:</p>
+<ol>
+<li>Collected 100 real NSTC official documents (approvals, retirement cases, procurement, correspondence, announcements, meeting notices)</li>
+<li>Built 5 Quality Question Banks using the new format with multiple sheets, multi-turn conversations, and timestamps</li>
+<li>Each question bank was filled out by business staff using the six-field structure, with AI engineers assisting in structuring</li>
+<li>Built an automated evaluation system scoring on 5 dimensions: document drafting, OCR accuracy, legal citation, response speed, and Traditional Chinese language quality</li>
+</ol>
+<p>Results:</p>
+<ul>
+<li>TAIDE original model baseline: ~50 points</li>
+<li>Botrun agent model + Quality Question Bank: 95 points</li>
+<li>Document generation cost: 350 TWD/document (vs ~1,500 TWD for manual work, saving 77%)</li>
+</ul>
+<hr />
+<h2 id="_6">Real Case: Ministry of Justice National Laws & Regulations Smart Portal</h2>
+<p><strong>Background:</strong> The National Laws & Regulations Database receives 120 million queries per year. The Ministry of Justice wanted AI to explain laws in plain language and guide citizens to the right agency.</p>
+<p>Quality Question Bank application:</p>
+<ul>
+<li>Scenario: A citizen asks "What happens if I turn right on a red light?"</li>
+<li>AI not only finds the Road Traffic Management and Penalty Act but also explains in plain language, states the penalty, and reminds about related considerations</li>
+<li>Evaluation criteria: Must not provide legal interpretations (only guidance), must cite correct statutes, must inform about the latest amendments</li>
+</ul>
+<p><strong>Pricing model:</strong> "4 TWD per query, capped at 480K TWD" — simple enough for any procurement officer to understand immediately.</p>
+<hr />
+<h2 id="_7">Next Steps</h2>
+<ul>
+<li>&larr; <a href="index.html">Back to Getting Started</a></li>
+<li><strong>Ready to go?</strong> — See <a href="hackathon.html">Hackathon Validation</a></li>
+<li><strong>Want to learn about the launch process?</strong> — See <a href="training.html">Training & Optimization</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">☰</button>
+  <footer>
+    <p>Botrun — CAMEO INC.</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>Last updated: 2026-03-26</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>

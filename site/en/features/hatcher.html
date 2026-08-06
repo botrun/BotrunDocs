@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hatcher (Bot Builder) — Build Your Custom AI Bot Without Coding</title>
+  <meta name="description" content="Complete guide to Botrun Hatcher: Bot creation, prompt engineering, knowledge base RAG, MCP tool integration, and multi-agent mode. Includes real-world case study (Taiwan Ministry of the Interior).">
+  <meta name="keywords" content="Hatcher, Bot Builder, prompt engineering, knowledge base, RAG, MCP, multi-agent mode, Botrun">
+  <link rel="canonical" href="https://docs.botrun.ai/en/features/hatcher.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Hatcher (Bot Builder) — Build Your Custom AI Bot Without Coding">
+  <meta property="og:description" content="Complete guide to Botrun Hatcher: Bot creation, prompt engineering, knowledge base RAG, MCP tool integration, and multi-agent mode. Includes real-world case study (Taiwan Ministry of the Interior).">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://docs.botrun.ai/en/features/hatcher.html">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Hatcher (Bot Builder) — Build Your Custom AI Bot Without Coding",
+  "description": "Complete guide to Botrun Hatcher: Bot creation, prompt engineering, knowledge base RAG, MCP tool integration, and multi-agent mode. Includes real-world case study (Taiwan Ministry of the Interior).",
+  "url": "https://docs.botrun.ai/en/features/hatcher.html",
+  "inLanguage": "en",
+  "dateModified": "2026-03-26"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://docs.botrun.ai/en"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Features",
+      "item": "https://docs.botrun.ai/en/features/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Hatcher",
+      "item": "https://docs.botrun.ai/en/features/hatcher.html"
+    }
+  ]
+}
+  </script>
+
+  <link rel="alternate" hreflang="zh-TW" href="https://docs.botrun.ai/features/hatcher.html">
+  <link rel="alternate" hreflang="en" href="https://docs.botrun.ai/en/features/hatcher.html">
+  <link rel="alternate" hreflang="x-default" href="https://docs.botrun.ai/features/hatcher.html">
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --bg-code: #334155;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent2: #818cf8;
+      --border: #334155;
+      --max-width: 860px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    /* Navigation */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 23, 42, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+    nav .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--accent);
+      margin-right: 1rem;
+      white-space: nowrap;
+      text-decoration: none;
+    }
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    nav a:hover { color: var(--text); background: var(--bg-card); }
+    nav a.active { color: var(--accent); background: var(--bg-card); }
+
+    /* Main content */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    /* Headings */
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin: 2rem 0 1rem;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.3;
+    }
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 2.5rem 0 0.75rem;
+      color: var(--text);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.5rem 0 0.5rem;
+      color: var(--accent);
+    }
+    h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem;
+      color: var(--text-muted);
+    }
+
+    /* Paragraphs & lists */
+    p { margin: 0.75rem 0; }
+    ul, ol { margin: 0.75rem 0; padding-left: 1.5rem; }
+    li { margin: 0.3rem 0; }
+
+    /* Links */
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      display: block;
+    }
+    th, td {
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th:first-child, td:first-child {
+      white-space: nowrap;
+    }
+    th {
+      background: var(--bg-card);
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    td { background: rgba(30, 41, 59, 0.5); }
+    tr:hover td { background: var(--bg-card); }
+
+    /* Blockquote */
+    blockquote {
+      border-left: 3px solid var(--accent);
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      background: var(--bg-card);
+      border-radius: 0 8px 8px 0;
+      color: var(--text-muted);
+    }
+    blockquote strong { color: var(--text); }
+
+    /* Code */
+    code {
+      background: var(--bg-code);
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.85em;
+      font-family: "SF Mono", Menlo, monospace;
+    }
+    pre {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    pre code {
+      background: none;
+      padding: 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    /* Horizontal rule */
+    hr {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 2rem 0;
+    }
+
+    /* Emphasis */
+    strong { color: #f1f5f9; }
+    em { color: var(--text-muted); }
+
+    /* Footer */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    /* RWD */
+    @media (max-width: 640px) {
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.25rem; }
+      table { font-size: 0.8rem; }
+      th, td { padding: 0.4rem 0.5rem; }
+      nav { padding: 0.5rem 1rem; }
+    }
+
+    /* Docs layout: sidebar + content */
+    .docs-layout {
+      display: flex;
+      max-width: 1100px;
+      margin: 0 auto;
+      gap: 0;
+    }
+    .sidebar {
+      width: 220px;
+      min-width: 220px;
+      position: sticky;
+      top: 52px;
+      height: calc(100vh - 52px);
+      overflow-y: auto;
+      border-right: 1px solid var(--border);
+      padding: 1.5rem 0;
+      background: var(--bg);
+    }
+    .sidebar a {
+      display: block;
+      padding: 0.4rem 1.25rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-left: 3px solid transparent;
+      transition: all 0.15s;
+    }
+    .sidebar a:hover {
+      color: var(--text);
+      background: var(--bg-card);
+      text-decoration: none;
+    }
+    .sidebar a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(56, 189, 248, 0.08);
+      font-weight: 500;
+    }
+    .docs-layout main {
+      flex: 1;
+      min-width: 0;
+      max-width: none;
+      padding: 2rem 2.5rem 4rem;
+    }
+    .docs-layout + footer {
+      max-width: 1100px;
+    }
+
+    /* Mobile sidebar */
+    .sidebar-toggle {
+      display: none;
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none;
+      font-size: 1.3rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    }
+    @media (max-width: 768px) {
+      .docs-layout { flex-direction: column; }
+      .sidebar {
+        position: fixed;
+        top: 52px;
+        left: 0;
+        width: 260px;
+        height: calc(100vh - 52px);
+        z-index: 150;
+        transform: translateX(-100%);
+        transition: transform 0.25s ease;
+        box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+      }
+      .sidebar.open { transform: translateX(0); }
+      .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 52px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.5);
+        z-index: 140;
+      }
+      .sidebar-overlay.open { display: block; }
+      .sidebar-toggle { display: flex; align-items: center; justify-content: center; }
+      .docs-layout main { padding: 1.5rem 1rem 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="../index.html" class="logo">Botrun Docs</a>
+    <a href="../index.html">Home</a>
+        <a href="../features/index.html" class="active">Features</a>
+        <a href="../getting-started/index.html">Getting Started</a>
+        <a href="../faq/index.html">FAQ</a>
+        <a href="../../features/hatcher.html" class="lang-switch" style="margin-left:auto;border:1px solid var(--border);font-size:0.8rem;">中文</a>
+  </nav>
+
+  <div class="docs-layout">
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html">Features Overview</a>
+      <a href="native.html">Native Botrun</a>
+      <a href="hatcher.html" class="active">Hatcher (Bot Builder)</a>
+      <a href="platform.html">Platform Capabilities</a>
+    </aside>
+    <main>
+<h1 id="hatcher">Hatcher (Bot Builder) — Build Your Own Bot</h1>
+<blockquote>
+<p><strong>Hatcher is where you turn "general-purpose AI" into "your dedicated digital employee."</strong></p>
+<p>Native Botrun can do a bit of everything, but Hatcher lets you build an AI Bot specialized for a specific business scenario — one that knows your terminology, follows your rules, and only uses the tools you specify.</p>
+</blockquote>
+<p>&larr; <a href="index.html">Back to Features Overview</a></p>
+<hr />
+<h2 id="case-study">Case Study: Ministry of the Interior — Visa Review in 30 Seconds</h2>
+<p><strong>Scenario:</strong> The Department of Civil Affairs reviews large volumes of foreign national study-in-Taiwan applications each year. Each case required 3 hours of manual review.</p>
+<p>Hatcher configuration:</p>
+<ul>
+<li><strong>Role</strong>: Visa review specialist</li>
+<li><strong>Knowledge base</strong>: Eight types of official document draft templates and review form templates</li>
+<li><strong>Tools</strong>: PDF analysis (passport recognition), automatic document merging ("paper clip" function)</li>
+</ul>
+<p>What the Bot can do:</p>
+<ol>
+<li>Upload application documents (up to 10-person groups)</li>
+<li>Automatically recognize names, passport numbers, and dates of birth from passports</li>
+<li>Automatically verify Taiwan participation ratio (must reach 50%)</li>
+<li>Generate complete official documents (3 pages) + review forms (1 page)</li>
+<li>Automatically create a "supervisor review checklist" with page number references</li>
+</ol>
+<p><strong>Result:</strong> Manual 3 hours &rarr; AI <strong>30 seconds to 1 minute</strong></p>
+<hr />
+<h2 id="what-is-hatcher">What Is Hatcher?</h2>
+<p>Hatcher is Botrun's Bot builder. Think of it as an "AI laboratory": you define the role, knowledge, and tools, and Hatcher assembles a custom AI assistant for you.</p>
+<p><strong>No coding required.</strong> The entire process is just filling out forms, uploading files, and selecting tools.</p>
+<h3 id="native-vs-hatched">Native Botrun vs. Hatched Bot</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Native Botrun</th>
+<th>Hatched Bot</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who can use it</strong></td>
+<td>Everyone, available instantly</td>
+<td>You build it, share with specific people</td>
+</tr>
+<tr>
+<td><strong>Knowledge scope</strong></td>
+<td>General knowledge + web search</td>
+<td>General knowledge + <strong>your uploaded documents</strong></td>
+</tr>
+<tr>
+<td><strong>Behavior rules</strong></td>
+<td>Platform defaults</td>
+<td><strong>Your defined role, tone, and restrictions</strong></td>
+</tr>
+<tr>
+<td><strong>Tool capabilities</strong></td>
+<td>Platform default tools</td>
+<td><strong>Your selected tool combination</strong></td>
+</tr>
+<tr>
+<td><strong>Best for</strong></td>
+<td>Ad-hoc Q&A, quick analysis</td>
+<td><strong>Repeatable professional workflows</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="configuration">What You Can Configure</h2>
+<p>Hatcher's configuration is divided into five sections:</p>
+<h3 id="section-1">1. Basic Settings</h3>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Description</th>
+<th>UI Label</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bot Name</strong></td>
+<td>Give your Bot a memorable name</td>
+<td>"Name"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-2">2. Prompt Engineering (The Core)</h3>
+<p>The prompt template is the Bot's "brain instructions" — it defines who the Bot is, how it speaks, and what it can and cannot do.</p>
+<p>You can configure the following in your prompt:</p>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Role Definition</strong></td>
+<td>The Bot's identity and expertise</td>
+<td>"You are a SQL expert at the Ministry of the Interior, specializing in population statistics database queries"</td>
+</tr>
+<tr>
+<td><strong>Interaction Rules</strong></td>
+<td>Conversation style and tone</td>
+<td>"Use Traditional Chinese (Taiwan), warm but professional tone"</td>
+</tr>
+<tr>
+<td><strong>Restrictions</strong></td>
+<td>What the Bot cannot do</td>
+<td>"Do not provide legal interpretations, only direct users to the responsible agency"</td>
+</tr>
+<tr>
+<td><strong>Task Objective</strong></td>
+<td>The Bot's purpose</td>
+<td>"Help users convert natural language descriptions into executable SQL queries"</td>
+</tr>
+<tr>
+<td><strong>Output Format</strong></td>
+<td>Response structure</td>
+<td>"Always include the referenced regulation number in each response"</td>
+</tr>
+</tbody>
+</table>
+<h3 id="section-3">3. Bot Mode</h3>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Basic Mode</strong></td>
+<td>Pure conversation, responds directly using the prompt</td>
+<td>Simple Q&A, text processing</td>
+</tr>
+<tr>
+<td><strong>Multi-Agent Mode</strong></td>
+<td>Can call tools, autonomously decides when to use which tool</td>
+<td>Complex tasks requiring web search, file analysis, and chart generation</td>
+</tr>
+</tbody>
+</table>
+<p>When multi-agent mode is selected, the Bot gains "autonomous thinking" — it determines which tools your question requires and combines them automatically.</p>
+<p><strong>Model Selection</strong>: Basic mode and multi-agent mode each have their own independent model pool, so you can choose the most suitable model for each need.</p>
+<h3 id="section-4">4. MCP Toolbox (Multi-Agent Mode Only)</h3>
+<p>Select the tools you want to give your Bot. Currently supports 8 MCP applications:</p>
+<table>
+<thead>
+<tr>
+<th>Application</th>
+<th>Capability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Google Drive MCP</td>
+<td>Real-time cloud document reading and collaboration</td>
+</tr>
+<tr>
+<td>Cloud File MCP</td>
+<td>Read, write, and modify files on cloud servers</td>
+</tr>
+<tr>
+<td>Remote PDF MCP</td>
+<td>Read and combine public PDF documents</td>
+</tr>
+<tr>
+<td>Remote Web MCP</td>
+<td>Real-time web content crawling and extraction</td>
+</tr>
+<tr>
+<td>SQLite MCP</td>
+<td>Fast, precise structured data queries</td>
+</tr>
+<tr>
+<td>Perplexity MCP</td>
+<td>Real-time web information aggregation</td>
+</tr>
+<tr>
+<td>Playwright MCP</td>
+<td>Web automation and testing</td>
+</tr>
+<tr>
+<td>Google Maps MCP</td>
+<td>Location-aware precise search</td>
+</tr>
+</tbody>
+</table>
+<p>Multiple tools can be combined. For example: a Bot first uses Perplexity to search for data, then uses Remote PDF to read documents, and finally compiles a report.</p>
+<h3 id="section-5">5. Knowledge Base</h3>
+<p>Upload your own documents, and the Bot will answer questions based on this data.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Add Files</strong></td>
+<td>Upload multiple files (up to 200MB each)</td>
+</tr>
+<tr>
+<td><strong>Supported Formats</strong></td>
+<td>PDF, Word, CSV, Excel, and more</td>
+</tr>
+<tr>
+<td><strong>Semantic Search</strong></td>
+<td>Bot uses vector search to find the most relevant content</td>
+</tr>
+<tr>
+<td><strong>Source Citations</strong></td>
+<td>Responses include source references for verification</td>
+</tr>
+<tr>
+<td><strong>Domain Filtering</strong></td>
+<td>Restrict search results to specified websites only</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="build-steps">Build Steps (Done in 5 Minutes)</h2>
+<pre><code>Step 1: Click the "Hatcher" tab in the top navigation bar
+  ↓
+Step 2: Click "Create BOT"
+  ↓
+Step 3: Enter a name (e.g., "Ministry of Interior Visa Review")
+  ↓
+Step 4: Write prompt engineering (define role, rules, tasks)
+  ↓
+Step 5: Choose BOT mode
+  ├── Basic: Pure conversation
+  └── Multi-Agent: Can use tools → Select MCP tools
+  ↓
+Step 6: Upload knowledge base files (optional)
+  ↓
+Step 7: Test in real-time using the right-side testing panel
+  ↓
+Done! The system auto-saves every 3 seconds
+</code></pre>
+<p><strong>Save status indicator</strong>: The interface shows "Unsaved" → "Saving" → "Saved at XX:XX!"</p>
+<hr />
+<h2 id="share-bot">Share Your Bot</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Copy Unique URL</strong></td>
+<td>One-click copy, paste to colleagues and they can use it</td>
+</tr>
+<tr>
+<td><strong>Targeted Sharing</strong></td>
+<td>Share with specific users</td>
+</tr>
+</tbody>
+</table>
+<p>When recipients open the link, they see the Bot's introduction page and can click "Add and Start Conversation" to begin using it.</p>
+<hr />
+<h2 id="advanced">Advanced Usage</h2>
+<h3 id="high-taste-examples">Pairing with High-Taste Examples</h3>
+<p>Hatcher + <a href="../getting-started/index.html#high-taste-examples">High-Taste Examples</a> is the best combination:</p>
+<ol>
+<li>Create a Bot in Hatcher, defining the role and tools</li>
+<li>Provide examples using High-Taste Examples (six fields: motivation, benefit, question, answer, source data, evaluation criteria)</li>
+<li>The Bot automatically learns how to respond from the examples</li>
+<li>No need to manually refine prompts — once the examples are ready, the prompt engineering is complete</li>
+</ol>
+<hr />
+<h2 id="faq">Hatcher FAQ</h2>
+<table>
+<thead>
+<tr>
+<th>Question</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I don't know how to write prompts?</td>
+<td>Use <a href="../getting-started/index.html#high-taste-examples">High-Taste Examples</a> to provide examples, and AI learns automatically</td>
+</tr>
+<tr>
+<td>Can others see my Bot?</td>
+<td>No, unless you actively share it</td>
+</tr>
+<tr>
+<td>How many Bots can I create?</td>
+<td>No limit</td>
+</tr>
+<tr>
+<td>Is there a file size limit?</td>
+<td>200MB per file</td>
+</tr>
+<tr>
+<td>Will I lose my work mid-edit?</td>
+<td>No, the system auto-saves every 3 seconds</td>
+</tr>
+<tr>
+<td>Can I change the model?</td>
+<td>Yes, basic mode and multi-agent mode each have independent model pools</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>&larr; <a href="index.html">Back to Features Overview</a></li>
+<li><strong>Want to learn about native features?</strong> &rarr; See <a href="native.html">Native Botrun</a></li>
+<li><strong>Want to learn about platform capabilities?</strong> &rarr; See <a href="platform.html">Platform Capabilities</a></li>
+</ul>
+    </main>
+  </div>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle menu">☰</button>
+  <footer>
+    <p>Botrun — CAMEO INC.</p>
+    <p>service@cameo.tw &middot; 02-2912-5028</p>
+    <p>Last updated: 2026-03-26</p>
+  </footer>
+
+  <script>
+  (function() {
+    var btn = document.getElementById('sidebarToggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+    if (!btn) return;
+    function toggle() {
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('open');
+    }
+    btn.addEventListener('click', toggle);
+    overlay.addEventListener('click', toggle);
+    sidebar.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        if (window.innerWidth <= 768) toggle();
+      });
+    });
+  })();
+  </script>
+</body>
+</html>
